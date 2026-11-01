@@ -38,8 +38,8 @@ Entra en la terminal con tu usuario:
 
 ```bash
 sudo apt install -y git curl
-git clone https://github.com/iceorsantiago/loq-dots.git
-cd loq-dots
+git clone https://github.com/iceorsantiago/virginityloss.git
+cd virginityloss
 ./install.sh
 ```
 
