@@ -17,6 +17,12 @@ chequeo "Noctalia instalado"              command -v noctalia
 chequeo "config de niri válida"           niri validate
 chequeo "config de Noctalia válida"       noctalia config validate
 
+if [ -f /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi ]; then
+    info "Dual boot"
+    chequeo "Windows en el menú de GRUB"  grep -q 'Windows Boot Manager' /boot/grub/grub.cfg
+    chequeo "os-prober activado"          grep -rqs 'GRUB_DISABLE_OS_PROBER=false' /etc/default/grub /etc/default/grub.d
+fi
+
 info "NVIDIA"
 chequeo "módulo nvidia cargado"           grep -q '^nvidia ' /proc/modules
 chequeo "nvidia_drm con modeset=Y"        grep -q Y /sys/module/nvidia_drm/parameters/modeset

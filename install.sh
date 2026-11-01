@@ -73,6 +73,7 @@ fi
 
 paso repos       10-repos.sh      root
 paso escritorio  20-escritorio.sh root
+paso dualboot    25-dualboot.sh   root
 if [ "$NVIDIA" -eq 1 ]; then paso nvidia 30-nvidia.sh root; else warn "Saltando NVIDIA: sin driver no hay escritorio acelerado en este equipo."; fi
 paso laptop      40-laptop.sh     root
 FORZAR=1 paso dots 50-dots.sh     usuario

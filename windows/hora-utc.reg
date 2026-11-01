@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+; loq-dots: Windows keeps the BIOS clock in UTC, like Linux, so the time does not drift between systems.
+; To undo: delete the RealTimeIsUniversal value.
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation]
+"RealTimeIsUniversal"=dword:00000001
