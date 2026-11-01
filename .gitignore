@@ -1,0 +1,7 @@
+# Descargas y temporales
+*.part
+*.tmp
+*.log
+# El wallpaper se descarga al instalar; no se redistribuye
+*.png
+*.jpg

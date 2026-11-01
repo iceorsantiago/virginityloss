@@ -1,0 +1,70 @@
+# loq-dots · Noctalia v5 con la estética de suzuha (shell de MystiaFin hecho con amane):
+#  - Catppuccin Mocha con acento azul #89b4fa (paleta "Amane" en palettes/Amane.json)
+#  - Poppins como fuente de la interfaz
+#  - Barra de 40 px pegada arriba, a todo lo ancho, cuyas esquinas inferiores se curvan
+#    hacia adentro y se funden con las esquinas de la pantalla (el efecto "líquido" de suzuha)
+#  - Widgets como píldoras redondeadas; launcher y paneles salen pegados a la barra
+# También se puede ajustar todo desde la ventana de Ajustes (Super+N).
+
+[shell]
+lang                = "es"
+font_family         = "Poppins"
+corner_radius_scale = 1.0
+time_format         = "{:%I:%M %p}"
+polkit_agent        = true
+telemetry_enabled   = false
+
+[shell.panel]
+transparency_mode        = "soft"
+shadow                   = true
+launcher_placement       = "attached"
+control_center_placement = "attached"
+wallpaper_placement      = "attached"
+session_placement        = "attached"
+clipboard_placement      = "floating"
+
+[theme]
+mode           = "dark"
+source         = "custom"
+custom_palette = "Amane"
+# Para colores sacados del wallpaper (el modo "dynamic" de suzuha):
+# source = "wallpaper"
+
+[wallpaper]
+enabled             = true
+fill_mode           = "crop"
+transition          = ["disc"]
+transition_duration = 1200
+directory           = "@WALLPAPERS@"
+
+[wallpaper.default]
+path = "@WALLPAPER@"
+
+[backdrop]
+enabled = false
+
+[bar.main]
+position             = "top"
+thickness            = 40
+background_opacity   = 1.0
+compositor_blur      = false
+shadow               = false
+contact_shadow       = false
+margin_ends          = 0
+margin_edge          = 0
+radius               = 16
+radius_bottom_left   = 16
+radius_bottom_right  = 16
+concave_edge_corners = true
+padding              = 12
+widget_spacing       = 8
+capsule              = true
+capsule_fill         = "surface_container"
+start  = ["launcher", "workspaces"]
+center = ["clock", "media"]
+end    = ["tray", "cpu", "volume", "network", "bluetooth", "brightness", "battery", "notifications", "control-center"]
+
+[widget.cpu]
+type          = "sysmon"
+stat          = "cpu_usage"
+visualization = "none"

@@ -1,0 +1,19 @@
+# loq-dots: los repos externos solo aportan sus propios paquetes.
+# Prioridad 100 = nunca reemplazan una versión de Debian (500), pero sí instalan
+# lo que solo existe en ellos (niri, noctalia...).
+
+Package: *
+Pin: origin download.opensuse.org
+Pin-Priority: 100
+
+Package: niri xwayland-satellite
+Pin: origin download.opensuse.org
+Pin-Priority: 500
+
+Package: *
+Pin: origin pkg.noctalia.dev
+Pin-Priority: 100
+
+Package: noctalia* nickh-archive-keyring
+Pin: origin pkg.noctalia.dev
+Pin-Priority: 500

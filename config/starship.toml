@@ -1,0 +1,32 @@
+# loq-dots · prompt en Catppuccin Mocha
+add_newline = true
+format = "[ ](bold #89b4fa)$directory$git_branch$git_status$python$cmd_duration$character"
+
+[directory]
+style = "bold #89b4fa"
+format = "[$path]($style) "
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = " "
+style = "#cba6f7"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "#f5c2e7"
+format = "([$all_status$ahead_behind]($style) )"
+
+[python]
+symbol = " "
+style = "#f9e2af"
+format = "[$symbol$virtualenv]($style) "
+
+[cmd_duration]
+min_time = 2000
+style = "#6c7086"
+format = "[$duration]($style) "
+
+[character]
+success_symbol = "[❯](bold #a6e3a1)"
+error_symbol = "[❯](bold #f38ba8)"

@@ -1,0 +1,7 @@
+# Solo se usa si noctalia-greeter no está disponible.
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --time --remember --asterisks --cmd niri-session"
+user = "_greetd"
