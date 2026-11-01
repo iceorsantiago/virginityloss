@@ -38,7 +38,7 @@ Entra en la terminal con tu usuario:
 
 ```bash
 sudo apt install -y git
-git clone https://github.com/<tu-usuario>/loq-dots.git
+git clone https://github.com/iceorsantiago/loq-dots.git
 cd loq-dots
 ./install.sh
 ```
