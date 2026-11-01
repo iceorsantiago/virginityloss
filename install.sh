@@ -48,7 +48,8 @@ LOG="$ESTADO/install-$(date +%Y%m%d-%H%M%S).log"
 exec > >(tee -a "$LOG") 2>&1
 info "Registro completo en $LOG"
 
-curl -fsI --max-time 10 https://deb.debian.org >/dev/null 2>&1 || die "Sin internet. Conéctate (el instalador de Debian ya configuró el Wi-Fi) y vuelve a intentar."
+# curl puede no venir en un netinst recién instalado; wget sí
+{ curl -fsI --max-time 10 https://deb.debian.org || wget -q --spider --timeout=10 https://deb.debian.org; } >/dev/null 2>&1 || die "Sin internet. Conéctate (el instalador de Debian ya configuró el Wi-Fi) y vuelve a intentar."
 
 # paso <nombre> <script> <root|usuario>
 paso() {

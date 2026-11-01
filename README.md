@@ -37,7 +37,7 @@ Usa la imagen **netinst amd64**:
 Entra en la terminal con tu usuario:
 
 ```bash
-sudo apt install -y git
+sudo apt install -y git curl
 git clone https://github.com/iceorsantiago/loq-dots.git
 cd loq-dots
 ./install.sh
