@@ -19,7 +19,7 @@ REPO_NV=https://developer.download.nvidia.com/compute/cuda/repos/debian13/x86_64
 
 info "GPU"
 lspci -nn | grep -iE 'vga|3d|display' || true
-lspci -nn | grep -qi '10de:' || die "No veo una GPU NVIDIA. Corre con --sin-nvidia si es otro equipo."
+lspci -nn | grep -i '10de:' >/dev/null || die "No veo una GPU NVIDIA. Corre con --sin-nvidia si es otro equipo."
 
 # No mezclar con los paquetes NVIDIA de Debian
 if dpkg -l 'nvidia-*' 2>/dev/null | awk '/^ii/ {print $2"="$3}' | grep -E '=550\.' >/dev/null; then
