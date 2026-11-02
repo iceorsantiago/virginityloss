@@ -143,14 +143,32 @@ shadow      = true
 type   = "media_player"
 output = "eDP-1"
 cx     = 960.0
-cy     = 560.0
-box_width  = 0.0
-box_height = 0.0
+cy     = 575.0
+box_width  = 680.0
+box_height = 250.0
 
 [desktop_widgets.widget.media.settings]
+layout               = "horizontal"
 hide_when_no_media   = false
 album_art_background = true
+album_art_blur       = 40
+audio_visualizer     = true
 shadow               = true
+
+# Bars + rings that pulse with whatever is playing (left side, under the weather)
+[desktop_widgets.widget.visualizer]
+type   = "fancy_audio_visualizer"
+output = "eDP-1"
+cx     = 300.0
+cy     = 640.0
+box_width  = 340.0
+box_height = 340.0
+
+[desktop_widgets.widget.visualizer.settings]
+visualization_mode = "bars_rings"
+sensitivity        = 1.5
+bloom_intensity    = 0.6
+fade_when_idle     = true
 
 [desktop_widgets.widget.cpu]
 type   = "sysmon"
