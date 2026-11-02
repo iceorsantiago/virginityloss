@@ -65,7 +65,8 @@ layout {
         proportion 0.5
         proportion 0.66667
     }
-    default-column-width { proportion 0.7; }
+    // Mitad de la pantalla: dos ventanas caben lado a lado sin tocar nada (Super+F para maximizar)
+    default-column-width { proportion 0.5; }
 
     focus-ring {
         off
