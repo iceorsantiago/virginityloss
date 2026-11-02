@@ -21,7 +21,7 @@ TYPST=https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unkn
 info "Debian packages"
 echo "wireshark-common wireshark-common/install-setuid boolean true" | sudo debconf-set-selections
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    wireshark tshark nmap picocom \
+    wireshark tshark nmap picocom conky-all \
     postgresql-client default-mysql-client sqlite3 default-jre \
     latexmk texlive-latex-extra texlive-lang-spanish texlive-fonts-recommended texlive-science
 sudo usermod -aG wireshark "$USER"

@@ -131,3 +131,12 @@ info "fish as the shell"
 if [ "$(getent passwd "$USER" | cut -d: -f7)" != "/usr/bin/fish" ] && [ -x /usr/bin/fish ]; then
     sudo chsh -s /usr/bin/fish "$USER" && ok "fish is your shell (applies after logging in again)"
 fi
+
+info "Desktop panel (Conky: RAM, VRAM, GPU, weather)"
+chmod +x "$CFG/conky/"*.sh 2>/dev/null || true
+if command -v conky >/dev/null; then
+    systemctl --user daemon-reload
+    systemctl --user enable conky.service && ok "conky starts with the desktop"
+else
+    warn "conky isn't installed yet (./install.sh --classes installs it)"
+fi

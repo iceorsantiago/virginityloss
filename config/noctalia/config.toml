@@ -179,3 +179,21 @@ display    = "graph"
 stat       = "gpu_usage"
 stat2      = "gpu_vram"
 show_label = true
+
+# Weather location (Noctalia supports one; the Conky panel also shows Quito)
+[location]
+auto_locate = false
+address     = "Urcuquí, Imbabura, Ecuador"
+
+[desktop_widgets.widget.weather]
+type   = "weather"
+output = "eDP-1"
+cx     = 1600.0
+cy     = 270.0
+box_width  = 0.0
+box_height = 0.0
+
+[desktop_widgets.widget.weather.settings]
+show_forecast = true
+forecast_days = 3
+shadow        = true
