@@ -64,6 +64,12 @@ start  = ["launcher", "workspaces"]
 center = ["clock", "media"]
 end    = ["tray", "cpu", "volume", "network", "bluetooth", "brightness", "battery", "notifications", "control-center"]
 
+# Samsung S19A300B por VGA (adaptador HDMI->VGA "PNP(RGT)"): la imagen analógica queda corrida y
+# corta el borde de arriba. Un margen fino deja la barra dentro de lo visible.
+[bar.main.monitor.samsung]
+match       = "PNP(RGT)"
+margin_edge = 8
+
 [widget.cpu]
 type          = "sysmon"
 stat          = "cpu_usage"
