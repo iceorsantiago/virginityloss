@@ -1,4 +1,6 @@
 fish_add_path -g ~/.local/bin ~/.cargo/bin
+# Node por proyecto (fnm): usa la versión de .nvmrc/.node-version al entrar a la carpeta
+type -q fnm; and fnm env --use-on-cd --shell fish | source
 
 if status is-interactive
     set -g fish_greeting ""

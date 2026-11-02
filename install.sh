@@ -7,6 +7,7 @@
 #   ./install.sh --apps        lo anterior + apps opcionales (pregunta una por una)
 #   ./install.sh --sin-nvidia  salta el driver NVIDIA (no recomendado en este equipo)
 #   ./install.sh --solo-dots   solo vuelve a copiar la configuración
+#   ./install.sh --clases      solo instala lo de clases (Node, Edge, Wireshark, LaTeX/Typst, SQL...)
 #   ./install.sh --verificar   revisa que todo funcione (córrelo después de reiniciar)
 #   ./install.sh --forzar      repite pasos ya marcados como hechos
 #
@@ -19,15 +20,16 @@ export REPO_DIR
 # shellcheck source=lib/comun.sh
 source "$REPO_DIR/lib/comun.sh"
 
-APPS=0 NVIDIA=1 SOLO_DOTS=0 FORZAR=0
+APPS=0 NVIDIA=1 SOLO_DOTS=0 FORZAR=0 CLASES=0
 for a in "$@"; do
     case "$a" in
         --apps) APPS=1 ;;
         --sin-nvidia) NVIDIA=0 ;;
         --solo-dots) SOLO_DOTS=1 ;;
+        --clases) CLASES=1 ;;
         --verificar) exec bash "$REPO_DIR/pasos/verificar.sh" ;;
         --forzar) FORZAR=1 ;;
-        -h|--help) sed -n '2,17p' "$0"; exit 0 ;;
+        -h|--help) sed -n '2,15p' "$0"; exit 0 ;;
         *) die "Opción desconocida: $a (usa --help)" ;;
     esac
 done
@@ -68,6 +70,10 @@ paso() {
 
 if [ "$SOLO_DOTS" -eq 1 ]; then
     FORZAR=1 paso dots 50-dots.sh usuario
+    exit 0
+fi
+if [ "$CLASES" -eq 1 ]; then
+    FORZAR=1 paso clases 70-clases.sh usuario
     exit 0
 fi
 

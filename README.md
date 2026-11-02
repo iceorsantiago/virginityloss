@@ -98,6 +98,7 @@ Después entra desde la pantalla de login y corre:
 |---|---|
 | `./install.sh --apps` | Además ofrece Brave, VS Code, Docker, herramientas de desarrollo, OBS, Flatpak y juegos (Steam, Heroic, Greenlight) |
 | `./install.sh --solo-dots` | Solo vuelve a aplicar la configuración |
+| `./install.sh --clases` | Solo lo de clases: Node 24 (fnm) + pnpm, Edge, Wireshark, nmap, picocom, LaTeX, Typst, clientes SQL, Java, puerto 8081 para Expo Go y Packet Tracer (si su `.deb` está en `~/Downloads`) |
 | `./install.sh --forzar` | Repite pasos ya hechos |
 | `NVIDIA_RAMA=615 ./install.sh` | Usa otra rama del driver |
 
