@@ -78,6 +78,13 @@ find . -type f | sed 's|^\./||' | sort | while read -r f; do
 done
 [ -d "$BACKUP" ] && ok "Your previous files are in $BACKUP"
 
+# Ollama (the local AI for Guess Who's Back) as a user service, when it is installed in ~/.local/opt/ollama
+systemctl --user daemon-reload || true
+if [ -x "$HOME/.local/opt/ollama/bin/ollama" ]; then
+    systemctl --user enable ollama.service >/dev/null 2>&1 && ok "Ollama starts at login" || warn "Couldn't enable the Ollama user service"
+    ln -sfn "$HOME/.local/opt/ollama/bin/ollama" "$HOME/.local/bin/ollama"
+fi
+
 # Real wallpaper paths (the Pictures folder name changes with the language)
 sed -i -e "s|@WALLPAPERS@|$WALLS|g" -e "s|@WALLPAPER@|$WALLS/snowcapped-mountains.jpg|g" "$CFG/noctalia/config.toml"
 

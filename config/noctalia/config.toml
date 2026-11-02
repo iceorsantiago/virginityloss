@@ -70,7 +70,7 @@ widget_spacing       = 8
 capsule              = true
 capsule_fill         = "surface_container"
 start  = ["launcher", "workspaces"]
-center = ["clock", "media"]
+center = ["clock", "gwb", "media"]
 end    = ["tray", "cpu", "cpu-temp", "ram", "vram", "gpu-temp", "volume", "network", "bluetooth", "brightness", "battery", "notifications", "control-center"]
 
 # Samsung S19A300B over VGA (HDMI->VGA adapter "PNP(RGT)"): the analog picture is shifted and
@@ -104,3 +104,19 @@ visualization = "none"
 type          = "sysmon"
 stat          = "gpu_temp"
 visualization = "none"
+
+# Guess Who's Back in the bar: the running timer, or the class that is on now / next (community plugin
+# tordex/stdout in JSON mode). The app writes the file every 30 s and hides it on quit; a file older than
+# 2 minutes (the app crashed or is closed) hides the widget too. Click: open the app.
+[widget.gwb]
+type           = "tordex/stdout:bar"
+cmd            = "f=\"$HOME/.local/state/guess-whos-back/bar.json\"; [ -n \"$(find \"$f\" -mmin -2 2>/dev/null)\" ] && cat \"$f\" || echo '{\"visible\":false}'"
+interval       = 15
+interval_units = "1"
+json           = true
+
+[widget.gwb.actions]
+left = "exec guess-whos-back"
+
+# The widget needs the community plugin; enable it once (it is fetched from Noctalia's community source):
+#   noctalia msg plugins enable tordex/stdout
