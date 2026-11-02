@@ -203,7 +203,8 @@ binds {
     // Apps
     Mod+Return hotkey-overlay-title="Terminal" { spawn "kitty"; }
     Ctrl+Alt+T { spawn "kitty"; }
-    Mod+T hotkey-overlay-title="Floating terminal" { spawn "kitty" "--class=kitty-scratch"; }
+    // Toggle: open, hide (it keeps running) and bring it back. See scratch-terminal.sh
+    Mod+T hotkey-overlay-title="Floating terminal (show/hide)" { spawn-sh "~/.config/niri/scratch-terminal.sh"; }
     Mod+E hotkey-overlay-title="Files" { spawn "nautilus"; }
 
     // Noctalia

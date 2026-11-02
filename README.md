@@ -111,7 +111,7 @@ The full log is in `~/.local/state/loq-dots/`.
 ## Main keybindings
 | Key | Action |
 |---|---|
-| `Super+Enter` | Terminal · `Super+T` floating terminal |
+| `Super+Enter` | Terminal · `Super+T` floating terminal (press again to hide it; it keeps running) |
 | `Super+Space` / `Ctrl+Space` | Launcher |
 | `Super+S` | Control center |
 | `Super+Shift+W` | Wallpapers |
