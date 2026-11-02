@@ -28,18 +28,18 @@ done <<'EOF'
 d3bf1bdaf0550e83da9ac0b1d1d9fe6db086835a83aa28578e609a394b9a0286 Poppins-SemiBold.ttf
 983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c Poppins-Bold.ttf
 EOF
-if ! fc-list | grep -q "JetBrainsMono Nerd Font"; then
+if ! fc-list | grep "JetBrainsMono Nerd Font" >/dev/null; then
     bajar "$NF/JetBrainsMono.tar.xz" "$TMP/jbm.tar.xz" 04d5e8f903693f9dd13e16f867e994834e681eb3c72c0d337a770dcda09010cf \
         && tar -xJf "$TMP/jbm.tar.xz" -C "$FUENTES/JetBrainsMonoNF" --wildcards '*.ttf' \
         || warn "Sin JetBrainsMono Nerd Font: los iconos de la terminal se verán como cuadros"
 fi
-if ! fc-list | grep -q "Symbols Nerd Font"; then
+if ! fc-list | grep "Symbols Nerd Font" >/dev/null; then
     bajar "$NF/NerdFontsSymbolsOnly.tar.xz" "$TMP/sym.tar.xz" 01172f37db8543edb102e5cb5c64101c9f4686630804d49b419aa07b23a69996 \
         && tar -xJf "$TMP/sym.tar.xz" -C "$FUENTES/SymbolsNF" --wildcards '*.ttf' \
         || warn "Sin Symbols Nerd Font"
 fi
 fc-cache -f >/dev/null
-fc-list | grep -q Poppins && ok "Poppins" || warn "Poppins no quedó instalada"
+fc-list | grep Poppins >/dev/null && ok "Poppins" || warn "Poppins no quedó instalada"
 
 info "Cursor Catppuccin Mocha Dark"
 if [ ! -d "$ICONOS/catppuccin-mocha-dark-cursors" ]; then

@@ -17,18 +17,30 @@ chequeo "Noctalia instalado"              command -v noctalia
 chequeo "config de niri válida"           niri validate
 chequeo "config de Noctalia válida"       noctalia config validate
 
-if [ -f /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi ]; then
+# /boot/efi y grub.cfg solo los lee root; efibootmgr sí funciona como usuario
+if efibootmgr 2>/dev/null | grep -i 'Windows Boot Manager' >/dev/null; then
     info "Dual boot"
-    chequeo "Windows en el menú de GRUB"  grep -q 'Windows Boot Manager' /boot/grub/grub.cfg
+    if [ -r /boot/grub/grub.cfg ]; then
+        chequeo "Windows en el menú de GRUB"  grep -q 'Windows Boot Manager' /boot/grub/grub.cfg
+    else
+        echo "     menú de GRUB: sin permiso para leerlo (revísalo con: sudo grep 'Windows Boot Manager' /boot/grub/grub.cfg)"
+    fi
     chequeo "os-prober activado"          grep -rqs 'GRUB_DISABLE_OS_PROBER=false' /etc/default/grub /etc/default/grub.d
 fi
 
 info "NVIDIA"
 chequeo "módulo nvidia cargado"           grep -q '^nvidia ' /proc/modules
-chequeo "nvidia_drm con modeset=Y"        grep -q Y /sys/module/nvidia_drm/parameters/modeset
+# El parámetro solo lo lee root; sin permiso se mira lo que se pasó al arrancar
+if [ -r /sys/module/nvidia_drm/parameters/modeset ]; then
+    chequeo "nvidia_drm con modeset=Y"    grep -q Y /sys/module/nvidia_drm/parameters/modeset
+else
+    chequeo "nvidia-drm.modeset=1 al arrancar" grep -qw 'nvidia-drm.modeset=1' /proc/cmdline
+fi
 chequeo "nvidia-smi ve la RTX 4050"       sh -c 'nvidia-smi --query-gpu=name --format=csv,noheader | grep -q "RTX 4050"'
-if mokutil --sb-state 2>/dev/null | grep -qi enabled; then
-    if mokutil --test-key /var/lib/dkms/mok.pub 2>&1 | grep -qi 'already enrolled'; then
+if mokutil --sb-state 2>/dev/null | grep -i enabled >/dev/null; then
+    # Sin pipe: con pipefail el código de salida de mokutil haría fallar la prueba aunque la llave esté
+    mok="$(mokutil --test-key /var/lib/dkms/mok.pub 2>&1 || true)"
+    if grep -qi 'already enrolled' <<<"$mok"; then
         ok "Secure Boot: llave DKMS enrolada"; rm -f "$HOME/.local/state/loq-dots/mok-pendiente"
     else
         printf '\033[1;31m xx\033[0m %s\n' "Secure Boot: la llave DKMS NO está enrolada (sudo mokutil --import /var/lib/dkms/mok.pub y reinicia)"

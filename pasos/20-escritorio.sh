@@ -65,7 +65,7 @@ if [ -f "$IFACES" ] && grep -qE '^\s*iface\s+wl' "$IFACES"; then
     ssid="${ssid%\"}"; ssid="${ssid#\"}"; psk="${psk%\"}"; psk="${psk#\"}"
     # NetworkManager ignora las interfaces de ifupdown mientras sigan ahí, así que arrancarlo no corta la red
     systemctl start NetworkManager.service
-    if [ -n "$ssid" ] && ! nmcli -t -f NAME connection show 2>/dev/null | grep -qxF "$ssid"; then
+    if [ -n "$ssid" ] && ! nmcli -t -f NAME connection show 2>/dev/null | grep -xF "$ssid" >/dev/null; then
         sec=()
         [ -z "$psk" ] || sec=(wifi-sec.key-mgmt wpa-psk wifi-sec.psk "$psk")
         if nmcli connection add type wifi con-name "$ssid" ifname "$dev" ssid "$ssid" "${sec[@]}" connection.autoconnect yes >/dev/null; then

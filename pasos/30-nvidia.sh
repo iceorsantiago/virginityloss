@@ -31,7 +31,7 @@ info "Headers del kernel, DKMS y herramientas de Secure Boot"
 apt-get install -y --no-install-recommends linux-headers-amd64 "linux-headers-$(uname -r)" dkms mokutil openssl build-essential
 
 SB=0
-if mokutil --sb-state 2>/dev/null | grep -qi 'enabled'; then SB=1; fi
+if mokutil --sb-state 2>/dev/null | grep -i 'enabled' >/dev/null; then SB=1; fi
 if [ "$SB" -eq 1 ]; then
     info "Secure Boot activo: preparando la llave con la que DKMS firma los módulos"
     if [ ! -f /var/lib/dkms/mok.pub ]; then
@@ -80,7 +80,9 @@ update-grub
 info "Comprobando la compilación del módulo"
 dkms status | grep -i nvidia || die "DKMS no muestra el módulo nvidia. Revisa: sudo dkms status && sudo dkms autoinstall"
 if [ "$SB" -eq 1 ]; then
-    if mokutil --test-key /var/lib/dkms/mok.pub 2>&1 | grep -qi 'already enrolled'; then
+    # Sin pipe: con pipefail el código de salida de mokutil haría fallar la prueba aunque la llave esté
+    mok="$(mokutil --test-key /var/lib/dkms/mok.pub 2>&1 || true)"
+    if grep -qi 'already enrolled' <<<"$mok"; then
         ok "La llave MOK ya está enrolada"
         rm -f "${ESTADO:-/tmp}/mok-pendiente"
     else
