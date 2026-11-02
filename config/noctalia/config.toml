@@ -188,7 +188,7 @@ address     = "Urcuquí, Imbabura, Ecuador"
 [desktop_widgets.widget.weather]
 type   = "weather"
 output = "eDP-1"
-cx     = 1600.0
+cx     = 300.0
 cy     = 270.0
 box_width  = 0.0
 box_height = 0.0
