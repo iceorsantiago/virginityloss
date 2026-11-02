@@ -27,6 +27,13 @@ output "eDP-1" {
     // scale 1.25   // descomenta si prefieres todo más grande
 }
 
+// Monitor VGA por adaptador HDMI->VGA ("Analog" en su menú). El adaptador (PNP RGT) dice que
+// prefiere 1024x768, pero el panel es 1366x768. Se busca por nombre: otros monitores HDMI no se tocan.
+output "PNP(RGT) 0x1352 0x01010101" {
+    mode "1366x768@59.790"
+    position x=1920 y=0
+}
+
 // ---------------- Entrada ----------------
 input {
     keyboard {
