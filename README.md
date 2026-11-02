@@ -120,6 +120,7 @@ El registro completo queda en `~/.local/state/loq-dots/`.
 | `Super+H/J/K/L` · flechas | Mover el foco |
 | `Super+Shift+←/→` (o `H/L`) | Ir al otro monitor |
 | `Super+Shift+Ctrl+←/→` (o `H/L`) | Llevar la ventana al otro monitor |
+| `Super` + dos dedos arriba/abajo en el touchpad | Subir / bajar el volumen |
 | `Super+R` · `Super+F` · `Super+Shift+F` | Ancho · maximizar · pantalla completa |
 | `Super+O` | Vista general |
 | `Super+Shift+S` / `Print` | Captura |

@@ -302,6 +302,10 @@ binds {
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
     XF86AudioLowerVolume  allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
     XF86AudioMute         allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
+    // Volumen con el touchpad: Super + deslizar dos dedos arriba/abajo (niri no deja reasignar
+    // el gesto de tres dedos). Con natural-scroll, "ScrollDown" es mover los dedos hacia arriba.
+    Mod+TouchpadScrollDown { spawn "noctalia" "msg" "volume-up" "2"; }
+    Mod+TouchpadScrollUp   { spawn "noctalia" "msg" "volume-down" "2"; }
     XF86MonBrightnessUp   allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
     XF86AudioPlay allow-when-locked=true { spawn "playerctl" "play-pause"; }
