@@ -21,8 +21,9 @@ cursor {
 }
 
 // Pantalla interna: 1920x1080 a 144 Hz. Confirma el nombre con:  niri msg outputs
+// niri exige la tasa exacta que lista ese comando: con "@144" no la encuentra y cae a 60 Hz.
 output "eDP-1" {
-    mode "1920x1080@144"
+    mode "1920x1080@144.003"
     // scale 1.25   // descomenta si prefieres todo más grande
 }
 
