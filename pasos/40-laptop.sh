@@ -6,12 +6,13 @@
 set -Eeuo pipefail
 source "$REPO_DIR/lib/comun.sh"
 
-info "Comando loq-bateria (modo conservación)"
-install -Dm755 "$REPO_DIR/system/bin/loq-bateria" /usr/local/bin/loq-bateria
+info "Comando loq-battery (modo conservación)"
+install -Dm755 "$REPO_DIR/system/bin/loq-battery" /usr/local/bin/loq-battery
+rm -f /usr/local/bin/loq-bateria   # nombre anterior
 if ls /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode >/dev/null 2>&1; then
-    ok "ideapad_laptop expone conservation_mode: usa  sudo loq-bateria on|off"
+    ok "ideapad_laptop expone conservation_mode: usa  sudo loq-battery on|off"
 else
-    warn "Este kernel no expone conservation_mode todavía; loq-bateria avisará si no está disponible."
+    warn "Este kernel no expone conservation_mode todavía; loq-battery avisará si no está disponible."
 fi
 
 info "Opciones de Wi-Fi (desactivadas por defecto)"

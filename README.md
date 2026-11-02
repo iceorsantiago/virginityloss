@@ -127,7 +127,7 @@ El registro completo queda en `~/.local/state/loq-dots/`.
 | `Super+Shift+Space` | Cambiar teclado us ↔ latam |
 | `Super+Shift+/` | Todos los atajos |
 
-En fish, `bateria on|off|estado` controla el modo conservación (tope de carga ~80%).
+En fish, `battery on|off|status` controla el modo conservación (tope de carga ~80%).
 
 ## Qué cambió respecto al repo de xMane13
 | Original (Acer Nitro V 15, Intel) | loq-dots (Lenovo LOQ, AMD sin iGPU) |
@@ -135,7 +135,7 @@ En fish, `bateria on|off|estado` controla el modo conservación (tope de carga ~
 | Driver NVIDIA 550 de Debian, que ya no compila en open y no corre PyTorch actual | Repo oficial de NVIDIA, rama 595 fijada, módulos open |
 | No maneja Secure Boot | Llave MOK de DKMS generada y enrolada |
 | `arreglar-nvidia.sh` parchea código fuente del 550 | Eliminado |
-| Módulo de batería de Acer + `chmod 666` en `/sys` | `ideapad_laptop` del kernel + `sudo loq-bateria` |
+| Módulo de batería de Acer + `chmod 666` en `/sys` | `ideapad_laptop` del kernel + `sudo loq-battery` |
 | `fixaudio` para audio Intel | Eliminado (el ALC257 usa HDA estándar) |
 | `APT::Install-Recommends false` para todo el sistema | `--no-install-recommends` solo en el escritorio |
 | Repos externos sin pin | DankLinux y Noctalia pineados |

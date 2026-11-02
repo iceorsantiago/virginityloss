@@ -1,0 +1,12 @@
+#!/bin/sh
+# Lenovo LOQ battery conservation mode (charges to ~80% to extend battery life).
+# Usage: sudo loq-battery on | off | status
+set -eu
+f="$(ls /sys/bus/platform/drivers/ideapad_acpi/*/conservation_mode 2>/dev/null | head -n1 || true)"
+[ -n "$f" ] || { echo "Not available: the ideapad_laptop module does not expose conservation_mode on this kernel." >&2; exit 1; }
+case "${1:-status}" in
+    on)     echo 1 > "$f"; echo "Conservation mode: on (charge limit ~80%)" ;;
+    off)    echo 0 > "$f"; echo "Conservation mode: off (charges to 100%)" ;;
+    status) [ "$(cat "$f")" = 1 ] && echo "Conservation mode: on" || echo "Conservation mode: off" ;;
+    *)      echo "Usage: sudo loq-battery on|off|status" >&2; exit 2 ;;
+esac

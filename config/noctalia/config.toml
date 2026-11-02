@@ -7,7 +7,7 @@
 # También se puede ajustar todo desde la ventana de Ajustes (Super+N).
 
 [shell]
-lang                = "es"
+lang                = "en"
 font_family         = "Poppins"
 corner_radius_scale = 1.0
 time_format         = "{:%I:%M %p}"

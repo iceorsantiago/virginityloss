@@ -16,18 +16,18 @@
     "separator",
     { "type": "os",       "key": "  Distro" },
     { "type": "kernel",   "key": "  Kernel" },
-    { "type": "uptime",   "key": "  Encendido" },
-    { "type": "packages", "key": "  Paquetes" },
+    { "type": "uptime",   "key": "  Uptime" },
+    { "type": "packages", "key": "  Packages" },
     "break",
     { "type": "wm",       "key": "  Compositor" },
     { "type": "terminal", "key": "  Terminal" },
     { "type": "shell",    "key": "  Shell" },
-    { "type": "display",  "key": "  Pantalla", "format": "{width}x{height} @ {refresh-rate} Hz" },
+    { "type": "display",  "key": "  Display", "format": "{width}x{height} @ {refresh-rate} Hz" },
     "break",
     { "type": "cpu",      "key": "  CPU", "format": "{1}" },
     { "type": "gpu",      "key": "  GPU", "format": "{2}" },
     { "type": "memory",   "key": "  RAM" },
-    { "type": "disk",     "key": "  Disco", "folders": "/", "format": "{size-used} / {size-total} ({size-percentage})" },
-    { "type": "battery",  "key": "  Batería" }
+    { "type": "disk",     "key": "  Disk", "folders": "/", "format": "{size-used} / {size-total} ({size-percentage})" },
+    { "type": "battery",  "key": "  Battery" }
   ]
 }
