@@ -40,6 +40,13 @@ directory           = "@WALLPAPERS@"
 [wallpaper.default]
 path = "@WALLPAPER@"
 
+# Lock screen: its own image instead of the blurred, tinted desktop wallpaper.
+# The image is the user's own file (not in the repo); without it Noctalia falls back to the wallpaper.
+[lockscreen]
+wallpaper      = "@WALLPAPERS@/miles-morales.jpeg"
+blur_intensity = 0.1
+tint_intensity = 0.15
+
 [backdrop]
 enabled = false
 
