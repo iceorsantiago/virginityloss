@@ -31,6 +31,9 @@ if ask "Docker Engine?"; then
         | sudo tee /etc/apt/sources.list.d/docker.sources >/dev/null
     sudo apt-get update
     sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    # Start Docker on first use (docker.socket) instead of at every boot
+    sudo systemctl disable docker.service containerd.service
+    sudo systemctl enable docker.socket
     warn "The docker group is equivalent to root. If you want it anyway:  sudo usermod -aG docker $USER"
 fi
 
@@ -48,6 +51,8 @@ if ask "Games: Steam (Proton), Heroic (Epic/GOG/Amazon) and Greenlight (Xbox Clo
     sudo apt-get install -y flatpak
     sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     sudo flatpak install -y flathub com.heroicgameslauncher.hgl io.github.unknownskl.greenlight
+    # gamemode: full CPU/GPU speed only while a game runs (Steam launch option: gamemoderun %command%)
+    sudo apt-get install -y gamemode
     # Steam needs the 32-bit NVIDIA libraries from the SAME branch as the driver.
     sudo dpkg --add-architecture i386
     sudo apt-get update

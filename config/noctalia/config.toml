@@ -71,7 +71,7 @@ capsule              = true
 capsule_fill         = "surface_container"
 start  = ["launcher", "workspaces"]
 center = ["clock", "media"]
-end    = ["tray", "cpu", "volume", "network", "bluetooth", "brightness", "battery", "notifications", "control-center"]
+end    = ["tray", "cpu", "cpu-temp", "ram", "vram", "gpu-temp", "volume", "network", "bluetooth", "brightness", "battery", "notifications", "control-center"]
 
 # Samsung S19A300B over VGA (HDMI->VGA adapter "PNP(RGT)"): the analog picture is shifted and
 # cuts off the top edge. A thin margin keeps the bar inside the visible area.
@@ -82,4 +82,25 @@ margin_edge = 8
 [widget.cpu]
 type          = "sysmon"
 stat          = "cpu_usage"
+visualization = "none"
+
+# Always-visible metrics next to CPU usage (GPU values come from the NVIDIA driver via NVML)
+[widget.cpu-temp]
+type          = "sysmon"
+stat          = "cpu_temp"
+visualization = "none"
+
+[widget.ram]
+type          = "sysmon"
+stat          = "ram_used"
+visualization = "none"
+
+[widget.vram]
+type          = "sysmon"
+stat          = "gpu_vram"
+visualization = "none"
+
+[widget.gpu-temp]
+type          = "sysmon"
+stat          = "gpu_temp"
 visualization = "none"
