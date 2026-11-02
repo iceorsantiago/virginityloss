@@ -120,3 +120,62 @@ left = "exec guess-whos-back"
 
 # The widget needs the community plugin; enable it once (it is fetched from Noctalia's community source):
 #   noctalia msg plugins enable tordex/stdout
+
+# Desktop widgets on the laptop screen (they sit under windows: see them on an empty workspace).
+# Move them with the editor: Super+N -> Desktop -> Toggle Editor, or  noctalia msg desktop-widgets-toggle-edit
+[desktop_widgets]
+enabled = true
+
+[desktop_widgets.widget.clock]
+type   = "clock"
+output = "eDP-1"
+cx     = 960.0
+cy     = 270.0
+box_width  = 0.0
+box_height = 0.0
+
+[desktop_widgets.widget.clock.settings]
+clock_style = "digital"
+format      = "{:%I:%M %p}"
+shadow      = true
+
+[desktop_widgets.widget.media]
+type   = "media_player"
+output = "eDP-1"
+cx     = 960.0
+cy     = 560.0
+box_width  = 0.0
+box_height = 0.0
+
+[desktop_widgets.widget.media.settings]
+hide_when_no_media   = false
+album_art_background = true
+shadow               = true
+
+[desktop_widgets.widget.cpu]
+type   = "sysmon"
+output = "eDP-1"
+cx     = 700.0
+cy     = 860.0
+box_width  = 0.0
+box_height = 0.0
+
+[desktop_widgets.widget.cpu.settings]
+display    = "graph"
+stat       = "cpu_usage"
+stat2      = "cpu_temp"
+show_label = true
+
+[desktop_widgets.widget.gpu]
+type   = "sysmon"
+output = "eDP-1"
+cx     = 1220.0
+cy     = 860.0
+box_width  = 0.0
+box_height = 0.0
+
+[desktop_widgets.widget.gpu.settings]
+display    = "graph"
+stat       = "gpu_usage"
+stat2      = "gpu_vram"
+show_label = true
