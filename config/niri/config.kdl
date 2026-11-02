@@ -221,8 +221,10 @@ binds {
 
     // Windows
     Mod+Q repeat=false { close-window; }
+    Mod+Z repeat=false hotkey-overlay-title="Close window" { close-window; }
     Alt+F4 { close-window; }
-    Mod+V { toggle-window-floating; }
+    Mod+V hotkey-overlay-title="Browser (open or focus)" { spawn-sh "~/.config/niri/focus-or-launch.sh brave-browser brave-browser"; }
+    Mod+Alt+V { toggle-window-floating; }
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
     Mod+W { toggle-column-tabbed-display; }
     Mod+O repeat=false { toggle-overview; }

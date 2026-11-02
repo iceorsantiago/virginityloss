@@ -118,7 +118,9 @@ The full log is in `~/.local/state/loq-dots/`.
 | `Super+.` | Clipboard |
 | `Super+N` | Noctalia settings |
 | `Super+X` | Power / session |
-| `Super+Q` | Close window |
+| `Super+Q` · `Super+Z` | Close window |
+| `Super+V` | Browser: open Brave, or jump to it if it's already open |
+| `Super+Alt+V` | Float the window / put it back in line |
 | `Super+1..9` · `Super+Shift+1..9` | Go to / move to workspace |
 | `Super+H/J/K/L` · arrows | Move focus |
 | `Super+Shift+←/→` (or `H/L`) | Go to the other monitor |
