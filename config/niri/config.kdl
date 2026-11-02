@@ -163,6 +163,12 @@ window-rule {
     open-floating true
 }
 
+// Guess Who's Back: its layout needs the full width to stay readable
+window-rule {
+    match app-id="^guess-whos-back$"
+    open-maximized true
+}
+
 // >>> blur (niri >= 26.04; the installer removes this block if your niri doesn't support it)
 blur {
     passes 2
