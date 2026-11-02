@@ -19,7 +19,7 @@ Parte de [xMane13/dotfiles](https://github.com/xMane13/dotfiles), adaptado a est
 | Ventanas | Esquinas de 16 px, gaps de 6, sin borde ni focus ring, sombra suave, entran y salen deslizándose |
 | Terminal | kitty translúcido (0.75) con blur, fish y starship en Catppuccin |
 | Cursor | Catppuccin Mocha Dark |
-| Wallpaper | El de `examples/` de amane (se descarga al instalar; no se incluye en el repo) |
+| Wallpaper | `snowcapped-mountains.jpg` de [ML4W](https://github.com/mylinuxforwork/wallpaper), el del post de r/unixporn; el de amane queda como alternativa en `Super+Shift+W` (se descargan al instalar; no se incluyen en el repo) |
 
 > amane es un *framework* en Rust para hacer shells. No es un tema. La apariencia viene de
 > **suzuha**, el shell que su autora usa a diario. Aquí se recrea con **Noctalia** en lugar de compilar suzuha.
@@ -167,5 +167,6 @@ En fish, `bateria on|off|estado` controla el modo conservación (tope de carga ~
 ## Créditos y licencias
 - Base de scripts, atajos y estructura: [xMane13/dotfiles](https://github.com/xMane13/dotfiles) (MIT, © Manuel M. Muñoz Cárdenas).
 - Estética: [amane](https://github.com/MystiaFin/amane) y [suzuha](https://github.com/MystiaFin/suzuha) de MystiaFin. Se recrea la apariencia; no se copia código.
-  El wallpaper viene de `amane/examples/wallpaper.png`. Es arte de terceros sin licencia clara, así que se descarga para uso personal y no se redistribuye aquí.
+  Los wallpapers vienen de [mylinuxforwork/wallpaper](https://github.com/mylinuxforwork/wallpaper) (`snowcapped-mountains.jpg`) y de `amane/examples/wallpaper.png`.
+  Son arte de terceros sin licencia clara para la imagen, así que se descargan para uso personal y no se redistribuyen aquí.
 - [Catppuccin](https://catppuccin.com) (MIT). Fuentes: Poppins (OFL), Nerd Fonts (OFL/MIT).

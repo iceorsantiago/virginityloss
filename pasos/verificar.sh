@@ -64,7 +64,7 @@ chequeo "Poppins"                         sh -c 'fc-list | grep -q Poppins'
 chequeo "JetBrainsMono Nerd Font"         sh -c 'fc-list | grep -q "JetBrainsMono Nerd Font"'
 chequeo "Symbols Nerd Font"               sh -c 'fc-list | grep -q "Symbols Nerd Font"'
 chequeo "Cursor Catppuccin"               test -d "$HOME/.local/share/icons/catppuccin-mocha-dark-cursors"
-chequeo "Wallpaper"                       sh -c 'ls "$(xdg-user-dir PICTURES)/Wallpapers/amane.png" || ls ~/Pictures/Wallpapers/amane.png'
+chequeo "Wallpaper"                       sh -c 'ls "$(xdg-user-dir PICTURES)/Wallpapers/snowcapped-mountains.jpg" || ls ~/Pictures/Wallpapers/snowcapped-mountains.jpg'
 chequeo "fish como shell"                 sh -c 'getent passwd "$USER" | grep -q /usr/bin/fish'
 
 echo

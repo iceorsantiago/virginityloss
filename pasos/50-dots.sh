@@ -2,7 +2,8 @@
 # Paso 5 (usuario): la estética de amane/suzuha.
 #  - Fuentes: Poppins (UI), JetBrainsMono Nerd Font (terminal), Symbols Nerd Font (iconos)
 #  - Cursor Catppuccin Mocha Dark, tema GTK oscuro, iconos Papirus-Dark
-#  - Wallpaper del repo amane (se descarga, no se redistribuye)
+#  - Wallpapers: snowcapped-mountains (ML4W, el de r/unixporn, por defecto) y el de amane
+#    (se descargan, no se redistribuyen)
 #  - Copia config/ a ~/.config con respaldo, valida niri y Noctalia y corrige lo que no pase
 # Todas las descargas están fijadas a una versión y se comprueba su SHA-256.
 set -Eeuo pipefail
@@ -17,6 +18,7 @@ GF=https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f
 NF=https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1
 CUR=https://github.com/catppuccin/cursors/releases/download/v2.0.0/catppuccin-mocha-dark-cursors.zip
 WP=https://raw.githubusercontent.com/MystiaFin/amane/544cbfc23af37f84ac237cd9bec53173981772b3/examples/wallpaper.png
+WP_NIEVE=https://raw.githubusercontent.com/mylinuxforwork/wallpaper/3d2ff28d8326793f21ce8344707ce56396b81cb5/snowcapped-mountains.jpg
 
 info "Fuentes"
 mkdir -p "$FUENTES/Poppins" "$FUENTES/JetBrainsMonoNF" "$FUENTES/SymbolsNF"
@@ -57,8 +59,10 @@ IMAGENES="$(xdg-user-dir PICTURES 2>/dev/null || echo "$HOME/Pictures")"
 [ "$IMAGENES" != "$HOME" ] || IMAGENES="$HOME/Pictures"
 WALLS="$IMAGENES/Wallpapers"
 mkdir -p "$WALLS" "$HOME/Pictures/Screenshots"
-[ -s "$WALLS/amane.png" ] || bajar "$WP" "$WALLS/amane.png" 65de98d08676cd84fbb22ee0a7439db83a438d504fa5c0f7296a1c3b7d71f163 \
+[ -s "$WALLS/snowcapped-mountains.jpg" ] || bajar "$WP_NIEVE" "$WALLS/snowcapped-mountains.jpg" 19c29e7af97d254cc39f369ecf1520a9153bc67b32b9d5cce3fe1fa0eb7c18b1 \
     || warn "No se pudo bajar el wallpaper; elige otro desde Noctalia (Super+Shift+W)"
+[ -s "$WALLS/amane.png" ] || bajar "$WP" "$WALLS/amane.png" 65de98d08676cd84fbb22ee0a7439db83a438d504fa5c0f7296a1c3b7d71f163 \
+    || warn "No se pudo bajar el wallpaper de amane (opcional)"
 
 info "Copiando config/ a $CFG"
 BACKUP="$CFG/loq-dots-respaldo-$(date +%Y%m%d-%H%M%S)"
@@ -75,7 +79,7 @@ done
 [ -d "$BACKUP" ] && ok "Tus archivos anteriores quedaron en $BACKUP"
 
 # Rutas reales del wallpaper (la carpeta de Imágenes cambia con el idioma)
-sed -i -e "s|@WALLPAPERS@|$WALLS|g" -e "s|@WALLPAPER@|$WALLS/amane.png|g" "$CFG/noctalia/config.toml"
+sed -i -e "s|@WALLPAPERS@|$WALLS|g" -e "s|@WALLPAPER@|$WALLS/snowcapped-mountains.jpg|g" "$CFG/noctalia/config.toml"
 
 info "Validando niri"
 if command -v niri >/dev/null; then
