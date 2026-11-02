@@ -43,7 +43,9 @@ path = "@WALLPAPER@"
 # Lock screen: its own image instead of the blurred, tinted desktop wallpaper.
 # The image is the user's own file (not in the repo); without it Noctalia falls back to the wallpaper.
 [lockscreen]
-wallpaper      = "@WALLPAPERS@/miles-morales.jpeg"
+# 16:9 crop shifted left so the subject isn't clipped by the centered crop:
+#   ffmpeg -i miles-morales.jpeg -vf crop=3840:2160:300:0 -q:v 2 miles-morales-lock.jpg
+wallpaper      = "@WALLPAPERS@/miles-morales-lock.jpg"
 blur_intensity = 0.1
 tint_intensity = 0.15
 
