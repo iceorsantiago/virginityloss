@@ -1,5 +1,5 @@
 fish_add_path -g ~/.local/bin ~/.cargo/bin
-# Node por proyecto (fnm): usa la versión de .nvmrc/.node-version al entrar a la carpeta
+# Per-project Node (fnm): uses the version from .nvmrc/.node-version when you cd into the folder
 type -q fnm; and fnm env --use-on-cd --shell fish | source
 
 if status is-interactive
@@ -12,7 +12,7 @@ if status is-interactive
         alias ll 'eza -l --icons=auto --group-directories-first --header --git'
     end
 
-    # Catppuccin Mocha para el resaltado de la línea de comandos
+    # Catppuccin Mocha for command-line highlighting
     set -g fish_color_command 89b4fa
     set -g fish_color_param cdd6f4
     set -g fish_color_quote a6e3a1

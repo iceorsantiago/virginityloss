@@ -1,10 +1,10 @@
-# loq-dots · Noctalia v5 con la estética de suzuha (shell de MystiaFin hecho con amane):
-#  - Catppuccin Mocha con acento azul #89b4fa (paleta "Amane" en palettes/Amane.json)
-#  - Poppins como fuente de la interfaz
-#  - Barra de 40 px pegada arriba, a todo lo ancho, cuyas esquinas inferiores se curvan
-#    hacia adentro y se funden con las esquinas de la pantalla (el efecto "líquido" de suzuha)
-#  - Widgets como píldoras redondeadas; launcher y paneles salen pegados a la barra
-# También se puede ajustar todo desde la ventana de Ajustes (Super+N).
+# loq-dots · Noctalia v5 with the suzuha look (MystiaFin's shell built with amane):
+#  - Catppuccin Mocha with blue accent #89b4fa ("Amane" palette in palettes/Amane.json)
+#  - Poppins as the UI font
+#  - 40 px bar stuck to the top, full width, whose bottom corners curve
+#    inward and blend into the screen corners (suzuha's "liquid" effect)
+#  - Widgets as rounded pills; launcher and panels come out attached to the bar
+# Everything can also be tweaked from the Settings window (Super+N).
 
 [shell]
 lang                = "en"
@@ -27,7 +27,7 @@ clipboard_placement      = "floating"
 mode           = "dark"
 source         = "custom"
 custom_palette = "Amane"
-# Para colores sacados del wallpaper (el modo "dynamic" de suzuha):
+# For colors taken from the wallpaper (suzuha's "dynamic" mode):
 # source = "wallpaper"
 
 [wallpaper]
@@ -64,8 +64,8 @@ start  = ["launcher", "workspaces"]
 center = ["clock", "media"]
 end    = ["tray", "cpu", "volume", "network", "bluetooth", "brightness", "battery", "notifications", "control-center"]
 
-# Samsung S19A300B por VGA (adaptador HDMI->VGA "PNP(RGT)"): la imagen analógica queda corrida y
-# corta el borde de arriba. Un margen fino deja la barra dentro de lo visible.
+# Samsung S19A300B over VGA (HDMI->VGA adapter "PNP(RGT)"): the analog picture is shifted and
+# cuts off the top edge. A thin margin keeps the bar inside the visible area.
 [bar.main.monitor.samsung]
 match       = "PNP(RGT)"
 margin_edge = 8

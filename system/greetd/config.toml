@@ -1,4 +1,4 @@
-# Solo se usa si noctalia-greeter no está disponible.
+# Only used if noctalia-greeter isn't available.
 [terminal]
 vt = 1
 

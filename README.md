@@ -1,70 +1,70 @@
 # loq-dots
 
-Debian 13 (trixie) instalado **sin escritorio** → **niri + Noctalia v5** con la estética de
-[amane](https://github.com/MystiaFin/amane) / [suzuha](https://github.com/MystiaFin/suzuha), con un solo script.
+Debian 13 (trixie) installed **without a desktop** → **niri + Noctalia v5** with the look of
+[amane](https://github.com/MystiaFin/amane) / [suzuha](https://github.com/MystiaFin/suzuha), with a single script.
 
-Hecho para el **Lenovo LOQ 15ARP9** (83JC): Ryzen 5 7235HS, RTX 4050 Laptop **sin GPU integrada**,
-Wi-Fi/BT Realtek RTL8852BE, 1920×1080 a 144 Hz y Secure Boot activo.
-Parte de [xMane13/dotfiles](https://github.com/xMane13/dotfiles), adaptado a este equipo.
+Made for the **Lenovo LOQ 15ARP9** (83JC): Ryzen 5 7235HS, RTX 4050 Laptop **with no integrated GPU**,
+Realtek RTL8852BE Wi-Fi/BT, 1920×1080 at 144 Hz and Secure Boot on.
+Based on [xMane13/dotfiles](https://github.com/xMane13/dotfiles), adapted to this machine.
 
-## La estética
+## The look
 
 | | |
 |---|---|
-| Colores | Catppuccin Mocha, acento azul `#89b4fa` (el que trae suzuha por defecto) |
-| Barra | 40 px, arriba, a todo lo ancho, pegada al borde. Sus esquinas inferiores se curvan y se funden con la pantalla, como la barra "líquida" de suzuha |
-| Widgets | Píldoras redondeadas: launcher y workspaces · reloj y media · bandeja, CPU, volumen, red, BT, brillo, batería |
-| Paneles | Launcher, centro de control, wallpapers y sesión salen pegados a la barra |
-| Fuentes | Poppins (interfaz), JetBrainsMono Nerd Font (terminal), Symbols Nerd Font |
-| Ventanas | Esquinas de 16 px, gaps de 6, sin borde ni focus ring, sombra suave, entran y salen deslizándose |
-| Terminal | kitty translúcido (0.75) con blur, fish y starship en Catppuccin |
+| Colors | Catppuccin Mocha, blue accent `#89b4fa` (suzuha's default) |
+| Bar | 40 px, at the top, full width, stuck to the edge. Its bottom corners curve and blend into the screen, like suzuha's "liquid" bar |
+| Widgets | Rounded pills: launcher and workspaces · clock and media · tray, CPU, volume, network, BT, brightness, battery |
+| Panels | Launcher, control center, wallpapers and session come out attached to the bar |
+| Fonts | Poppins (UI), JetBrainsMono Nerd Font (terminal), Symbols Nerd Font |
+| Windows | 16 px corners, gaps of 6, no border or focus ring, soft shadow, they slide in and out |
+| Terminal | Translucent kitty (0.75) with blur, fish and starship in Catppuccin |
 | Cursor | Catppuccin Mocha Dark |
-| Wallpaper | `snowcapped-mountains.jpg` de [ML4W](https://github.com/mylinuxforwork/wallpaper), el del post de r/unixporn; el de amane queda como alternativa en `Super+Shift+W` (se descargan al instalar; no se incluyen en el repo) |
+| Wallpaper | `snowcapped-mountains.jpg` from [ML4W](https://github.com/mylinuxforwork/wallpaper), the one from the r/unixporn post; amane's stays as an alternative under `Super+Shift+W` (downloaded at install time; not included in the repo) |
 
-> amane es un *framework* en Rust para hacer shells. No es un tema. La apariencia viene de
-> **suzuha**, el shell que su autora usa a diario. Aquí se recrea con **Noctalia** en lugar de compilar suzuha.
+> amane is a Rust *framework* for building shells. It isn't a theme. The look comes from
+> **suzuha**, the shell its author uses every day. Here it's recreated with **Noctalia** instead of building suzuha.
 
-## Instalación (dual boot: Debian principal + Windows para juegos)
+## Installation (dual boot: Debian main + Windows for games)
 
-Debian es el sistema de todos los días. Windows queda pequeño y solo sirve para lo que Linux no corre:
-Game Pass descargado, EA FC 26 (anti-cheat), Safe Exam Browser. Los juegos de Windows viven en el
-**SSD externo D:**, así que Windows no necesita espacio.
+Debian is the everyday system. Windows stays small and is only for what Linux can't run:
+downloaded Game Pass games, EA FC 26 (anti-cheat), Safe Exam Browser. The Windows games live on the
+**external SSD D:**, so Windows doesn't need much space.
 
-| Disco | Partición | Tamaño |
+| Disk | Partition | Size |
 |---|---|---|
-| SSD interno (512 GB) | EFI (la crea Windows y la comparten los dos) | ~100 MB |
-| SSD interno | Windows 11 | **120 GB** |
-| SSD interno | Debian 13 (el instalador la crea en el espacio libre) | el resto, ~350 GB |
-| SSD externo D: (NTFS) | Juegos de Windows (`D:\XboxGames`, EA) y el backup | 512 GB |
+| Internal SSD (512 GB) | EFI (created by Windows and shared by both) | ~100 MB |
+| Internal SSD | Windows 11 | **120 GB** |
+| Internal SSD | Debian 13 (the installer creates it in the free space) | the rest, ~350 GB |
+| External SSD D: (NTFS) | Windows games (`D:\XboxGames`, EA) and the backup | 512 GB |
 
-> ⚠️ **Antes de empezar:** el backup tiene que estar **verificado**.
-> **Desconecta el SSD externo D:** durante las dos instalaciones, para no borrarlo por error.
+> ⚠️ **Before you start:** the backup must be **verified**.
+> **Unplug the external SSD D:** during both installs, so you don't wipe it by mistake.
 
-### 0. Windows nuevo (va primero; si se instala después, borra el arranque de Linux)
-1. Crea el USB con la *Media Creation Tool* de Microsoft y arranca desde él con **F12**.
-2. *Instalación personalizada*. En el **disco interno** (el de ~476 GB), **elimina todas las particiones**,
-   crea **una de 122880 MB** (120 GB) e instala ahí. Deja el resto como *espacio sin asignar*.
-3. Ya en Windows, copia la carpeta `windows/` de este repo y corre como administrador:
+### 0. Fresh Windows (goes first; if installed later, it wipes the Linux bootloader)
+1. Make the USB with Microsoft's *Media Creation Tool* and boot from it with **F12**.
+2. *Custom install*. On the **internal disk** (the ~476 GB one), **delete all partitions**,
+   create **one of 122880 MB** (120 GB) and install there. Leave the rest as *unallocated space*.
+3. Once in Windows, copy this repo's `windows/` folder and run as administrator:
    ```powershell
-   powershell -ExecutionPolicy Bypass -File .\preparar-windows.ps1
+   powershell -ExecutionPolicy Bypass -File .\prepare-windows.ps1
    ```
-   Apaga el *Inicio rápido* (si no, Linux solo puede leer D:), pone el reloj en UTC y te muestra
-   si hay **BitLocker**. Si lo hay, guarda la clave de recuperación antes de seguir.
-4. Conecta D:. En la app Xbox, ve a *Configuración → Opciones de instalación* y elige **D:**.
-   Los juegos que ya estaban en `D:\WindowsApps` pertenecían al Windows anterior: usa *Administrar → Reparar*,
-   o reinstálalos. Haz lo mismo con la carpeta de juegos de la EA app.
+   It turns off *Fast Startup* (otherwise Linux can only read D:), sets the clock to UTC and shows you
+   whether **BitLocker** is on. If it is, save the recovery key before going on.
+4. Plug in D:. In the Xbox app, go to *Settings → Install options* and pick **D:**.
+   Games already in `D:\WindowsApps` belonged to the previous Windows: use *Manage → Repair*,
+   or reinstall them. Do the same with the EA app's games folder.
 
 ### 1. Debian 13
-Desconecta D: otra vez y usa la imagen **netinst amd64**:
-- **Contraseña de root: déjala vacía.** Así tu usuario recibe `sudo` automáticamente.
-- Conéctate al Wi-Fi durante la instalación. El firmware Realtek ya viene en la imagen.
-- Particionado: **"Guiado: utilizar el espacio libre contiguo más grande"**. Solo usa el espacio sin asignar,
-  no toca Windows y reutiliza la partición EFI. Antes de confirmar, revisa que Windows (NTFS, 120 GB) aparezca **sin formatear**.
-- En *Selección de programas*, **desmarca todos los escritorios** y deja solo "utilidades estándar del sistema".
-- **No desactives Secure Boot.** El script lo maneja.
+Unplug D: again and use the **netinst amd64** image:
+- **Root password: leave it empty.** That way your user gets `sudo` automatically.
+- Connect to Wi-Fi during the install. The Realtek firmware is already in the image.
+- Partitioning: **"Guided - use the largest continuous free space"**. It only uses the unallocated space,
+  doesn't touch Windows and reuses the EFI partition. Before confirming, check that Windows (NTFS, 120 GB) shows up **unformatted**.
+- In *Software selection*, **uncheck every desktop** and leave only "standard system utilities".
+- **Don't disable Secure Boot.** The script handles it.
 
-### 2. Un comando
-Entra en la terminal con tu usuario:
+### 2. One command
+Log in to the terminal with your user:
 
 ```bash
 sudo apt install -y git curl
@@ -73,104 +73,107 @@ cd virginityloss
 ./install.sh
 ```
 
-El script hace todo esto:
-1. Activa `contrib non-free non-free-firmware`.
-2. Agrega los repos de **Noctalia** (el oficial de su documentación) y **DankLinux** (para niri). Los dos quedan *pineados*: no pueden reemplazar paquetes de Debian.
-3. Instala el escritorio: niri, Noctalia, el login (noctalia-greeter, o tuigreet si no está disponible), PipeWire, NetworkManager, Bluetooth y firmware. Pasa tu Wi-Fi del instalador a NetworkManager.
-4. **Dual boot:** si encuentra Windows, activa `os-prober` para que *Windows Boot Manager* siga en el menú de GRUB (Debian es la opción por defecto, con 5 s para elegir). Instala soporte NTFS para abrir D: desde el gestor de archivos.
-5. Instala el **driver NVIDIA** desde el repo oficial de NVIDIA (rama 595, módulos *open*) y firma los módulos para Secure Boot. **Aquí te pide una contraseña de un solo uso.**
-6. Hace los ajustes del LOQ (modo conservación de batería) y aplica los dots: fuentes, cursor, wallpaper y configs, con respaldo de lo que ya tenías.
+The script does all of this:
+1. Enables `contrib non-free non-free-firmware`.
+2. Adds the **Noctalia** repo (the official one from its docs) and **DankLinux** (for niri). Both are *pinned*: they can't replace Debian packages.
+3. Installs the desktop: niri, Noctalia, the login screen (noctalia-greeter, or tuigreet if it isn't available), PipeWire, NetworkManager, Bluetooth and firmware. Moves your installer Wi-Fi to NetworkManager.
+4. **Dual boot:** if it finds Windows, it enables `os-prober` so *Windows Boot Manager* stays in the GRUB menu (Debian is the default, with 5 s to choose). Installs NTFS support to open D: from the file manager.
+5. Installs the **NVIDIA driver** from NVIDIA's official repo (595 branch, *open* modules) and signs the modules for Secure Boot. **This is where it asks you for a one-time password.**
+6. Applies the LOQ tweaks (battery conservation mode) and the dots: fonts, cursor, wallpaper and configs, backing up what you already had.
 
-### 3. Reiniciar
+### 3. Reboot
 ```bash
 sudo reboot
 ```
-Aparecerá una **pantalla azul (MokManager)**. Elige **Enroll MOK → Continue → Yes**, escribe la contraseña del paso 5 y luego **Reboot**.
-Luego verás el menú de GRUB: **Debian** arranca solo; para jugar elige **Windows Boot Manager** (o pulsa **F12** al encender).
-Después entra desde la pantalla de login y corre:
+A **blue screen (MokManager)** will show up. Choose **Enroll MOK → Continue → Yes**, type the password from step 5 and then **Reboot**.
+Then you'll see the GRUB menu: **Debian** boots by itself; to play, pick **Windows Boot Manager** (or press **F12** at power-on).
+After that, log in from the login screen and run:
 
 ```bash
-./install.sh --verificar
+./install.sh --verify
 ```
 
-### Opciones
+### Options
 | | |
 |---|---|
-| `./install.sh --apps` | Además ofrece Brave, VS Code, Docker, herramientas de desarrollo, OBS, Flatpak y juegos (Steam, Heroic, Greenlight) |
-| `./install.sh --solo-dots` | Solo vuelve a aplicar la configuración |
-| `./install.sh --clases` | Solo lo de clases: Node 24 (fnm) + pnpm, Edge, Wireshark, nmap, picocom, LaTeX, Typst, clientes SQL, Java, puerto 8081 para Expo Go y Packet Tracer (si su `.deb` está en `~/Downloads`) |
-| `./install.sh --forzar` | Repite pasos ya hechos |
-| `NVIDIA_RAMA=615 ./install.sh` | Usa otra rama del driver |
+| `./install.sh --apps` | Also offers Brave, VS Code, Docker, development tools, OBS, Flatpak and games (Steam, Heroic, Greenlight) |
+| `./install.sh --dots-only` | Only re-applies the config |
+| `./install.sh --classes` | Only the class stuff: Node 24 (fnm) + pnpm, Edge, Wireshark, nmap, picocom, LaTeX, Typst, SQL clients, Java, port 8081 for Expo Go and Packet Tracer (if its `.deb` is in `~/Downloads`) |
+| `./install.sh --no-nvidia` | Skips the NVIDIA driver (not recommended on this machine) |
+| `./install.sh --force` | Repeats steps already done |
+| `NVIDIA_BRANCH=615 ./install.sh` | Uses another driver branch |
 
-Si algo falla, corrígelo y vuelve a correr `./install.sh`: retoma desde el paso pendiente.
-El registro completo queda en `~/.local/state/loq-dots/`.
+The old Spanish flags (`--sin-nvidia`, `--solo-dots`, `--clases`, `--verificar`, `--forzar`) and `NVIDIA_RAMA` still work.
 
-## Atajos principales
-| Tecla | Acción |
+If something fails, fix it and run `./install.sh` again: it resumes from the pending step.
+The full log is in `~/.local/state/loq-dots/`.
+
+## Main keybindings
+| Key | Action |
 |---|---|
-| `Super+Enter` | Terminal · `Super+T` terminal flotante |
+| `Super+Enter` | Terminal · `Super+T` floating terminal |
 | `Super+Space` / `Ctrl+Space` | Launcher |
-| `Super+S` | Centro de control |
+| `Super+S` | Control center |
 | `Super+Shift+W` | Wallpapers |
-| `Super+.` | Portapapeles |
-| `Super+N` | Ajustes de Noctalia |
-| `Super+X` | Apagar / sesión |
-| `Super+Q` | Cerrar ventana |
-| `Super+1..9` · `Super+Shift+1..9` | Ir a / mover a workspace |
-| `Super+H/J/K/L` · flechas | Mover el foco |
-| `Super+Shift+←/→` (o `H/L`) | Ir al otro monitor |
-| `Super+Shift+Ctrl+←/→` (o `H/L`) | Llevar la ventana al otro monitor |
-| `Super` + dos dedos arriba/abajo en el touchpad | Subir / bajar el volumen |
-| `Super+R` · `Super+F` · `Super+Shift+F` | Ancho · maximizar · pantalla completa |
-| `Super+O` | Vista general |
-| `Super+Shift+S` / `Print` | Captura |
-| `Super+Shift+Space` | Cambiar teclado us ↔ latam |
-| `Super+Shift+/` | Todos los atajos |
+| `Super+.` | Clipboard |
+| `Super+N` | Noctalia settings |
+| `Super+X` | Power / session |
+| `Super+Q` | Close window |
+| `Super+1..9` · `Super+Shift+1..9` | Go to / move to workspace |
+| `Super+H/J/K/L` · arrows | Move focus |
+| `Super+Shift+←/→` (or `H/L`) | Go to the other monitor |
+| `Super+Shift+Ctrl+←/→` (or `H/L`) | Move the window to the other monitor |
+| `Super` + two fingers up/down on the touchpad | Volume up / down |
+| `Super+R` · `Super+F` · `Super+Shift+F` | Width · maximize · fullscreen |
+| `Super+O` | Overview |
+| `Super+Shift+S` / `Print` | Screenshot |
+| `Super+Shift+Space` | Switch keyboard us ↔ latam |
+| `Super+Shift+/` | All keybindings |
 
-En fish, `battery on|off|status` controla el modo conservación (tope de carga ~80%).
+In fish, `battery on|off|status` controls conservation mode (charge cap ~80%).
 
-## Qué cambió respecto al repo de xMane13
-| Original (Acer Nitro V 15, Intel) | loq-dots (Lenovo LOQ, AMD sin iGPU) |
+## What changed from xMane13's repo
+| Original (Acer Nitro V 15, Intel) | loq-dots (Lenovo LOQ, AMD with no iGPU) |
 |---|---|
-| Driver NVIDIA 550 de Debian, que ya no compila en open y no corre PyTorch actual | Repo oficial de NVIDIA, rama 595 fijada, módulos open |
-| No maneja Secure Boot | Llave MOK de DKMS generada y enrolada |
-| `arreglar-nvidia.sh` parchea código fuente del 550 | Eliminado |
-| Módulo de batería de Acer + `chmod 666` en `/sys` | `ideapad_laptop` del kernel + `sudo loq-battery` |
-| `fixaudio` para audio Intel | Eliminado (el ALC257 usa HDA estándar) |
-| `APT::Install-Recommends false` para todo el sistema | `--no-install-recommends` solo en el escritorio |
-| Repos externos sin pin | DankLinux y Noctalia pineados |
-| Edita `/etc/apt/sources.list` y `/etc/default/grub` con sed | Soporta deb822, respalda, y GRUB va en `/etc/default/grub.d/` |
-| Wi-Fi queda en ifupdown | Se copia a NetworkManager |
-| Claude Code con `curl \| bash` | Fuera del script |
-| Estética roja "Spike" | Catppuccin / amane |
-| Descargas `latest` sin verificar | Versiones fijadas con SHA-256 |
+| Debian's NVIDIA 550 driver, which no longer builds as open and doesn't run current PyTorch | NVIDIA's official repo, 595 branch pinned, open modules |
+| Doesn't handle Secure Boot | DKMS MOK key generated and enrolled |
+| `arreglar-nvidia.sh` patches the 550 source code | Removed |
+| Acer battery module + `chmod 666` on `/sys` | The kernel's `ideapad_laptop` + `sudo loq-battery` |
+| `fixaudio` for Intel audio | Removed (the ALC257 uses standard HDA) |
+| `APT::Install-Recommends false` system-wide | `--no-install-recommends` only for the desktop |
+| External repos without pinning | DankLinux and Noctalia pinned |
+| Edits `/etc/apt/sources.list` and `/etc/default/grub` with sed | Supports deb822, makes backups, and GRUB goes in `/etc/default/grub.d/` |
+| Wi-Fi stays on ifupdown | Copied to NetworkManager |
+| Claude Code via `curl \| bash` | Left out of the script |
+| Red "Spike" look | Catppuccin / amane |
+| Unverified `latest` downloads | Pinned versions with SHA-256 |
 
-## Problemas
-- **Pantalla negra o solo texto al arrancar.** El driver NVIDIA no cargó y este equipo no tiene otra GPU.
-  1. Entra a una TTY con `Ctrl+Alt+F2`.
-  2. Corre `sudo mokutil --test-key /var/lib/dkms/mok.pub`. Si dice que no está enrolada: `sudo mokutil --import /var/lib/dkms/mok.pub` y reinicia.
-  3. Corre `sudo dkms status`. Si falta el módulo: `sudo dkms autoinstall`.
-  4. Para entrar a una TTY sin driver: en GRUB pulsa `e` y añade `nomodeset`.
-- **El brillo no cambia.** Mira `ls /sys/class/backlight`. Si está vacío o no responde, prueba añadiendo `acpi_backlight=nvidia_wmi_ec` (o `native`) en `/etc/default/grub.d/90-loq-nvidia.cfg`, y luego `sudo update-grub`.
-- **Se cae el Wi-Fi.** Descomenta las líneas de `/etc/modprobe.d/rtw89-loq.conf` y reinicia.
-- **niri no arranca tras actualizarse.** Corre `niri validate`. El bloque `>>> blur` necesita niri ≥ 26.04.
-- **Después de una actualización del kernel no hay escritorio.** Corre `sudo dkms autoinstall` y reinicia. No uses el kernel de backports hasta que el driver lo soporte.
-- **Windows no aparece en el menú de GRUB.** Corre `sudo os-prober && sudo update-grub`. Mientras tanto puedes entrar con **F12** al encender.
-- **Después de una actualización de Windows arranca directo a Windows.** En la BIOS (F2) → *Boot*, pon **debian** primero, o en Windows (admin): `bcdedit /set {fwbootmgr} displayorder {bootmgr} /remove`.
-- **D: se abre solo en modo lectura en Linux.** Windows no se apagó del todo: corre `preparar-windows.ps1` (apaga el Inicio rápido) y apaga Windows con *Apagar*, no con *Suspender*.
-- **La hora está mal en Windows o en Linux.** Falta `windows/hora-utc.reg` en Windows.
-- **Deshacer:** los archivos del sistema tienen `*.bak-loq-dots`, y tus configs anteriores están en `~/.config/loq-dots-respaldo-*`.
+## Troubleshooting
+- **Black screen or text only at boot.** The NVIDIA driver didn't load and this machine has no other GPU.
+  1. Switch to a TTY with `Ctrl+Alt+F2`.
+  2. Run `sudo mokutil --test-key /var/lib/dkms/mok.pub`. If it says it isn't enrolled: `sudo mokutil --import /var/lib/dkms/mok.pub` and reboot.
+  3. Run `sudo dkms status`. If the module is missing: `sudo dkms autoinstall`.
+  4. To get to a TTY without the driver: in GRUB press `e` and add `nomodeset`.
+- **Brightness doesn't change.** Check `ls /sys/class/backlight`. If it's empty or doesn't respond, try adding `acpi_backlight=nvidia_wmi_ec` (or `native`) in `/etc/default/grub.d/90-loq-nvidia.cfg`, then `sudo update-grub`.
+- **Wi-Fi keeps dropping.** Uncomment the lines in `/etc/modprobe.d/rtw89-loq.conf` and reboot.
+- **niri doesn't start after an update.** Run `niri validate`. The `>>> blur` block needs niri ≥ 26.04.
+- **No desktop after a kernel update.** Run `sudo dkms autoinstall` and reboot. Don't use the backports kernel until the driver supports it.
+- **Windows doesn't show up in the GRUB menu.** Run `sudo os-prober && sudo update-grub`. Meanwhile you can get in with **F12** at power-on.
+- **After a Windows update it boots straight into Windows.** In the BIOS (F2) → *Boot*, put **debian** first, or in Windows (admin): `bcdedit /set {fwbootmgr} displayorder {bootmgr} /remove`.
+- **D: opens read-only in Linux.** Windows didn't fully shut down: run `prepare-windows.ps1` (turns off Fast Startup) and shut Windows down with *Shut down*, not *Sleep*.
+- **The time is wrong in Windows or Linux.** `windows/utc-time.reg` is missing on Windows.
+- **Undo:** system files have `*.bak-loq-dots`, and your previous configs are in `~/.config/loq-dots-backup-*` (older installs named them `~/.config/loq-dots-respaldo-*`).
 
-## Juegos
-- **Xbox Game Pass:** en Linux solo funciona **por la nube** (Greenlight o xbox.com/play), con límite de horas al mes desde noviembre de 2026. No se pueden descargar juegos de Game Pass.
-- **EA SPORTS FC 26:** **no corre** en Linux; su anti-cheat (Javelin) lo bloquea. Solo es jugable por la nube con Game Pass Ultimate, o en Windows.
-- **Batman Arkham:** funciona con Steam + Proton (Arkham Knight es Verified en Steam Deck), y también está en Game Pass (nube) y GeForce NOW.
-- **Naruto Storm:** mixto con Proton. Revisa ProtonDB.
-- Para FC 26 en local, Safe Exam Browser o juegos con anti-cheat de kernel: conserva Windows en dual boot.
+## Games
+- **Xbox Game Pass:** on Linux it only works **through the cloud** (Greenlight or xbox.com/play), with a monthly hour limit since November 2026. Game Pass games can't be downloaded.
+- **EA SPORTS FC 26:** **doesn't run** on Linux; its anti-cheat (Javelin) blocks it. It's only playable through the cloud with Game Pass Ultimate, or on Windows.
+- **Batman Arkham:** works with Steam + Proton (Arkham Knight is Verified on Steam Deck), and it's also on Game Pass (cloud) and GeForce NOW.
+- **Naruto Storm:** mixed with Proton. Check ProtonDB.
+- For FC 26 locally, Safe Exam Browser or games with kernel anti-cheat: keep Windows in dual boot.
 
-## Créditos y licencias
-- Base de scripts, atajos y estructura: [xMane13/dotfiles](https://github.com/xMane13/dotfiles) (MIT, © Manuel M. Muñoz Cárdenas).
-- Estética: [amane](https://github.com/MystiaFin/amane) y [suzuha](https://github.com/MystiaFin/suzuha) de MystiaFin. Se recrea la apariencia; no se copia código.
-  Los wallpapers vienen de [mylinuxforwork/wallpaper](https://github.com/mylinuxforwork/wallpaper) (`snowcapped-mountains.jpg`) y de `amane/examples/wallpaper.png`.
-  Son arte de terceros sin licencia clara para la imagen, así que se descargan para uso personal y no se redistribuyen aquí.
-- [Catppuccin](https://catppuccin.com) (MIT). Fuentes: Poppins (OFL), Nerd Fonts (OFL/MIT).
+## Credits and licenses
+- Script base, keybindings and structure: [xMane13/dotfiles](https://github.com/xMane13/dotfiles) (MIT, © Manuel M. Muñoz Cárdenas).
+- Look: [amane](https://github.com/MystiaFin/amane) and [suzuha](https://github.com/MystiaFin/suzuha) by MystiaFin. The appearance is recreated; no code is copied.
+  The wallpapers come from [mylinuxforwork/wallpaper](https://github.com/mylinuxforwork/wallpaper) (`snowcapped-mountains.jpg`) and from `amane/examples/wallpaper.png`.
+  They're third-party art with no clear license for the image, so they're downloaded for personal use and not redistributed here.
+- [Catppuccin](https://catppuccin.com) (MIT). Fonts: Poppins (OFL), Nerd Fonts (OFL/MIT).

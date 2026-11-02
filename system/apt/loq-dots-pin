@@ -1,6 +1,6 @@
-# loq-dots: los repos externos solo aportan sus propios paquetes.
-# Prioridad 100 = nunca reemplazan una versión de Debian (500), pero sí instalan
-# lo que solo existe en ellos (niri, noctalia...).
+# loq-dots: the external repos only provide their own packages.
+# Priority 100 = they never replace a Debian version (500), but they do install
+# what only exists in them (niri, noctalia...).
 
 Package: *
 Pin: origin download.opensuse.org

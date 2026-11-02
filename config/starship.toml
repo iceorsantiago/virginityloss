@@ -1,4 +1,4 @@
-# loq-dots · prompt en Catppuccin Mocha
+# loq-dots · Catppuccin Mocha prompt
 add_newline = true
 format = "[ ](bold #89b4fa)$directory$git_branch$git_status$python$cmd_duration$character"
 

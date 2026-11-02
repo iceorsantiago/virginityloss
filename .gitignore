@@ -1,7 +1,7 @@
-# Descargas y temporales
+# Downloads and temp files
 *.part
 *.tmp
 *.log
-# El wallpaper se descarga al instalar; no se redistribuye
+# The wallpaper is downloaded at install time; it isn't redistributed
 *.png
 *.jpg

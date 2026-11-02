@@ -1,8 +1,8 @@
 // ==========================================================================
-//  loq-dots · niri + Noctalia v5 en Debian 13 · Lenovo LOQ 15ARP9
-//  Estética de amane/suzuha (MystiaFin): Catppuccin Mocha, sin bordes ni
-//  focus ring, esquinas de 16 px, gaps de 6, sombra suave y ventanas que
-//  entran deslizándose. Base de atajos: dotfiles de xMane13.
+//  loq-dots · niri + Noctalia v5 on Debian 13 · Lenovo LOQ 15ARP9
+//  amane/suzuha look (MystiaFin): Catppuccin Mocha, no borders or
+//  focus ring, 16 px corners, gaps of 6, soft shadow and windows that
+//  slide in. Keybinding base: xMane13's dotfiles.
 // ==========================================================================
 
 spawn-at-startup "noctalia"
@@ -13,31 +13,31 @@ hotkey-overlay {
     skip-at-startup
 }
 
-screenshot-path "~/Pictures/Screenshots/Captura %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/Pictures/Screenshots/Screenshot %Y-%m-%d %H-%M-%S.png"
 
 cursor {
     xcursor-theme "catppuccin-mocha-dark-cursors"
     xcursor-size 24
 }
 
-// Pantalla interna: 1920x1080 a 144 Hz. Confirma el nombre con:  niri msg outputs
-// niri exige la tasa exacta que lista ese comando: con "@144" no la encuentra y cae a 60 Hz.
+// Internal screen: 1920x1080 at 144 Hz. Confirm the name with:  niri msg outputs
+// niri needs the exact rate that command lists: with "@144" it doesn't find it and falls back to 60 Hz.
 output "eDP-1" {
     mode "1920x1080@144.003"
-    // Fija: sin esto niri lo recoloca al conectar otro monitor y el orden queda al revés
+    // Fixed: without this niri repositions it when another monitor is plugged in and the order ends up reversed
     position x=0 y=0
-    // scale 1.25   // descomenta si prefieres todo más grande
+    // scale 1.25   // uncomment if you prefer everything bigger
 }
 
-// Monitor VGA por adaptador HDMI->VGA ("Analog" en su menú). El adaptador (PNP RGT) dice que
-// prefiere 1024x768, pero el panel es 1366x768. Se busca por nombre: otros monitores HDMI no se tocan.
-// Está a la DERECHA del portátil en el escritorio: el cursor pasa por el borde derecho.
+// VGA monitor through an HDMI->VGA adapter ("Analog" in its menu). The adapter (PNP RGT) says it
+// prefers 1024x768, but the panel is 1366x768. Matched by name: other HDMI monitors are left alone.
+// It sits to the RIGHT of the laptop on the desk: the cursor crosses over the right edge.
 output "PNP(RGT) 0x1352 0x01010101" {
     mode "1366x768@59.790"
     position x=1920 y=0
 }
 
-// ---------------- Entrada ----------------
+// ---------------- Input ----------------
 input {
     keyboard {
         xkb {
@@ -54,7 +54,7 @@ input {
     }
 }
 
-// ---------------- Apariencia ----------------
+// ---------------- Appearance ----------------
 layout {
     gaps 6
     background-color "transparent"
@@ -65,7 +65,7 @@ layout {
         proportion 0.5
         proportion 0.66667
     }
-    // Mitad de la pantalla: dos ventanas caben lado a lado sin tocar nada (Super+F para maximizar)
+    // Half the screen: two windows fit side by side without touching anything (Super+F to maximize)
     default-column-width { proportion 0.5; }
 
     focus-ring {
@@ -90,14 +90,14 @@ overview {
     }
 }
 
-// Wallpaper de Noctalia fijo detrás de los workspaces (no se desplaza al cambiar)
+// Noctalia wallpaper fixed behind the workspaces (doesn't scroll when switching)
 layer-rule {
     match namespace="^noctalia-wallpaper"
     place-within-backdrop true
 }
 
 animations {
-    // Las ventanas suben 240 px mientras aparecen y bajan mientras se van
+    // Windows rise 240 px as they appear and drop as they go away
     window-open {
         duration-ms 200
         curve "ease-out-cubic"
@@ -125,11 +125,11 @@ animations {
 }
 
 debug {
-    // Para que las notificaciones de Noctalia puedan enfocar ventanas
+    // So Noctalia notifications can focus windows
     honor-xdg-activation-with-invalid-serial
 }
 
-// ---------------- Reglas de ventanas ----------------
+// ---------------- Window rules ----------------
 window-rule {
     geometry-corner-radius 16
     clip-to-geometry true
@@ -163,7 +163,7 @@ window-rule {
     open-floating true
 }
 
-// >>> blur (niri >= 26.04; el instalador quita este bloque si tu niri no lo soporta)
+// >>> blur (niri >= 26.04; the installer removes this block if your niri doesn't support it)
 blur {
     passes 2
     offset 3.0
@@ -195,29 +195,29 @@ layer-rule {
 }
 // <<< blur
 
-// ---------------- Atajos ----------------
+// ---------------- Keybindings ----------------
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
-    Mod+Shift+Space hotkey-overlay-title="Cambiar idioma del teclado" { switch-layout "next"; }
+    Mod+Shift+Space hotkey-overlay-title="Switch keyboard layout" { switch-layout "next"; }
 
     // Apps
     Mod+Return hotkey-overlay-title="Terminal" { spawn "kitty"; }
     Ctrl+Alt+T { spawn "kitty"; }
-    Mod+T hotkey-overlay-title="Terminal flotante" { spawn "kitty" "--class=kitty-scratch"; }
-    Mod+E hotkey-overlay-title="Archivos" { spawn "nautilus"; }
+    Mod+T hotkey-overlay-title="Floating terminal" { spawn "kitty" "--class=kitty-scratch"; }
+    Mod+E hotkey-overlay-title="Files" { spawn "nautilus"; }
 
     // Noctalia
     Mod+Space hotkey-overlay-title="Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Ctrl+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-    Mod+S hotkey-overlay-title="Centro de control" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+S hotkey-overlay-title="Control center" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
     Mod+Shift+W hotkey-overlay-title="Wallpapers" { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
-    Mod+Period hotkey-overlay-title="Portapapeles" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
-    Mod+N hotkey-overlay-title="Ajustes de Noctalia" { spawn "noctalia" "msg" "settings-toggle"; }
-    Mod+X hotkey-overlay-title="Apagar / sesión" { spawn "noctalia" "msg" "panel-toggle" "session"; }
+    Mod+Period hotkey-overlay-title="Clipboard" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+    Mod+N hotkey-overlay-title="Noctalia settings" { spawn "noctalia" "msg" "settings-toggle"; }
+    Mod+X hotkey-overlay-title="Power / session" { spawn "noctalia" "msg" "panel-toggle" "session"; }
     Alt+Tab { spawn "noctalia" "msg" "window-switcher" "hold"; }
     Alt+Shift+Tab { spawn "noctalia" "msg" "window-switcher" "hold" "reverse"; }
 
-    // Ventanas
+    // Windows
     Mod+Q repeat=false { close-window; }
     Alt+F4 { close-window; }
     Mod+V { toggle-window-floating; }
@@ -248,7 +248,7 @@ binds {
     Mod+Ctrl+K     { move-window-up; }
     Mod+Ctrl+J     { move-window-down; }
 
-    // Monitores: Shift = ir al otro monitor, Shift+Ctrl = llevar la ventana allá
+    // Monitors: Shift = go to the other monitor, Shift+Ctrl = move the window there
     Mod+Shift+Left       { focus-monitor-left; }
     Mod+Shift+Right      { focus-monitor-right; }
     Mod+Shift+H          { focus-monitor-left; }
@@ -298,12 +298,12 @@ binds {
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp   cooldown-ms=150 { focus-workspace-up; }
 
-    // Multimedia (con el OSD de Noctalia)
+    // Media keys (with the Noctalia OSD)
     XF86AudioRaiseVolume  allow-when-locked=true { spawn "noctalia" "msg" "volume-up"; }
     XF86AudioLowerVolume  allow-when-locked=true { spawn "noctalia" "msg" "volume-down"; }
     XF86AudioMute         allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
-    // Volumen con el touchpad: Super + deslizar dos dedos arriba/abajo (niri no deja reasignar
-    // el gesto de tres dedos). Con natural-scroll, "ScrollDown" es mover los dedos hacia arriba.
+    // Volume with the touchpad: Super + two-finger swipe up/down (niri doesn't let you rebind
+    // the three-finger gesture). With natural-scroll, "ScrollDown" means moving your fingers up.
     Mod+TouchpadScrollDown { spawn "noctalia" "msg" "volume-up" "2"; }
     Mod+TouchpadScrollUp   { spawn "noctalia" "msg" "volume-down" "2"; }
     XF86MonBrightnessUp   allow-when-locked=true { spawn "noctalia" "msg" "brightness-up"; }
@@ -312,7 +312,7 @@ binds {
     XF86AudioNext allow-when-locked=true { spawn "playerctl" "next"; }
     XF86AudioPrev allow-when-locked=true { spawn "playerctl" "previous"; }
 
-    // Capturas
+    // Screenshots
     Print       { screenshot; }
     Mod+Shift+S { screenshot; }
     Ctrl+Print  { screenshot-screen; }
