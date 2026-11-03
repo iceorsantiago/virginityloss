@@ -1,5 +1,6 @@
 # Ollama for the local AI in Guess Who's Back (user install in ~/.local/opt/ollama, no sudo).
-# Enabled by steps/50-dots.sh when that binary exists. Loopback only.
+# Installed by steps/50-dots.sh when that binary exists, but not enabled at login: Guess Who's Back
+# starts it when it opens and stops it when it closes. Loopback only.
 [Unit]
 Description=Ollama (user install in ~/.local/opt/ollama)
 ConditionPathExists=%h/.local/opt/ollama/bin/ollama

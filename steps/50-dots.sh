@@ -78,10 +78,13 @@ find . -type f | sed 's|^\./||' | sort | while read -r f; do
 done
 [ -d "$BACKUP" ] && ok "Your previous files are in $BACKUP"
 
-# Ollama (the local AI for Guess Who's Back) as a user service, when it is installed in ~/.local/opt/ollama
+# Ollama (the local AI for Guess Who's Back) as a user service, when it is installed in ~/.local/opt/ollama.
+# Not started at login: Guess Who's Back starts it when it opens and stops it when it closes, so the model
+# only holds VRAM while the app is open. (`systemctl --user enable --now ollama` keeps it always on instead.)
 systemctl --user daemon-reload || true
 if [ -x "$HOME/.local/opt/ollama/bin/ollama" ]; then
-    systemctl --user enable ollama.service >/dev/null 2>&1 && ok "Ollama starts at login" || warn "Couldn't enable the Ollama user service"
+    systemctl --user disable ollama.service >/dev/null 2>&1 || true
+    ok "Ollama service installed (started and stopped by Guess Who's Back)"
     ln -sfn "$HOME/.local/opt/ollama/bin/ollama" "$HOME/.local/bin/ollama"
 fi
 
