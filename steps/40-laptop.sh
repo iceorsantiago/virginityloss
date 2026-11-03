@@ -23,6 +23,21 @@ info "Bluetooth: no USB autosuspend (it drops speakers like the Echo Dot)"
 install -Dm644 "$REPO_DIR/system/modprobe/btusb-loq.conf" /etc/modprobe.d/btusb-loq.conf
 ok "/etc/modprobe.d/btusb-loq.conf (applies after a reboot)"
 
+info "Bluetooth: Classic only (BR/EDR), so the Echo Dot doesn't drop on connect"
+# With LE enabled, the kernel tries Cross-Transport Key Derivation (BR/EDR SMP Pairing Request)
+# whenever the laptop ends up Central on a new link key. The Echo rejects it ("CTKD not allowed",
+# 0x0e) and the kernel then tears the whole link down with "Authentication Failure" (seen in
+# btmon; same as bluez/bluez#2661). Classic-only mode removes the trigger and keeps Secure
+# Connections on. Revert with ControllerMode = dual if you ever need Bluetooth LE devices.
+main_conf=/etc/bluetooth/main.conf
+if grep -qE '^[#[:space:]]*ControllerMode[[:space:]]*=' "$main_conf"; then
+    sed -i -E 's/^[#[:space:]]*ControllerMode[[:space:]]*=.*/ControllerMode = bredr/' "$main_conf"
+else
+    sed -i -E '0,/^\[General\]/s//[General]\nControllerMode = bredr/' "$main_conf"
+fi
+grep -q '^ControllerMode = bredr' "$main_conf" && ok "$main_conf: ControllerMode = bredr"
+systemctl restart bluetooth.service && ok "bluetooth.service restarted"
+
 info "Faster boot: don't wait for the network before the desktop starts"
 # A laptop needs nothing network-related at boot; this alone was ~5.7 s of every startup
 systemctl disable NetworkManager-wait-online.service 2>/dev/null || true
