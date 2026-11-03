@@ -19,6 +19,10 @@ info "Wi-Fi options (off by default)"
 install -Dm644 "$REPO_DIR/system/modprobe/rtw89-loq.conf" /etc/modprobe.d/rtw89-loq.conf
 ok "/etc/modprobe.d/rtw89-loq.conf (uncomment if the Wi-Fi drops)"
 
+info "Bluetooth: no USB autosuspend (it drops speakers like the Echo Dot)"
+install -Dm644 "$REPO_DIR/system/modprobe/btusb-loq.conf" /etc/modprobe.d/btusb-loq.conf
+ok "/etc/modprobe.d/btusb-loq.conf (applies after a reboot)"
+
 info "Faster boot: don't wait for the network before the desktop starts"
 # A laptop needs nothing network-related at boot; this alone was ~5.7 s of every startup
 systemctl disable NetworkManager-wait-online.service 2>/dev/null || true
