@@ -1,0 +1,12 @@
+[Unit]
+Description=Keep the Echo Dot Bluetooth speaker connected
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.config/bluetooth/echo-keepalive.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=graphical-session.target
