@@ -143,3 +143,9 @@ if command -v conky >/dev/null; then
 else
     warn "conky isn't installed yet (./install.sh --classes installs it)"
 fi
+
+info "Echo Dot keepalive (reconnects the speaker as the audio output, also after reboots)"
+# Needs steps/40-laptop.sh too (Classic-only Bluetooth); see config/bluetooth/echo-keepalive.sh.
+chmod +x "$CFG/bluetooth/echo-keepalive.sh" 2>/dev/null || true
+systemctl --user daemon-reload
+systemctl --user enable echo-keepalive.service && ok "echo-keepalive starts with the desktop"

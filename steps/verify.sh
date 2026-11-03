@@ -56,6 +56,7 @@ check "NetworkManager manages the Wi-Fi" sh -c 'nmcli -t -f TYPE,STATE device | 
 check "Bluetooth"                       sh -c 'bluetoothctl list | grep -q Controller'
 check "Bluetooth Classic-only (Echo fix)" grep -q '^ControllerMode = bredr' /etc/bluetooth/main.conf
 check "btusb autosuspend off"           sh -c 'test "$(cat /sys/module/btusb/parameters/enable_autosuspend)" = N'
+check "Echo keepalive enabled"           systemctl --user is-enabled -q echo-keepalive.service
 check "Audio (PipeWire)"                sh -c 'pactl info | grep -q PipeWire'
 check "Brightness control"              sh -c 'ls /sys/class/backlight/ | grep -q .'
 ls /sys/class/backlight/ 2>/dev/null | sed 's/^/     backlight: /'
