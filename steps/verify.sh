@@ -48,6 +48,9 @@ if mokutil --sb-state 2>/dev/null | grep -i enabled >/dev/null; then
         FAILURES=$((FAILURES + 1))
     fi
 fi
+check "suspend fix: pcie_aspm=off at boot"   grep -qw 'pcie_aspm=off' /proc/cmdline
+check "suspend fix: NVMe deep states off"    grep -qw 'nvme_core.default_ps_max_latency_us=0' /proc/cmdline
+check "suspend fix: NVIDIA S0ix enabled"     sh -c 'grep -A2 "S0ix Power" /proc/driver/nvidia/gpus/*/power | grep -q "Status:.*Enabled"'
 command -v nvidia-smi >/dev/null && nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader 2>/dev/null | sed 's/^/     /'
 
 info "LOQ hardware"
