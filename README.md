@@ -113,7 +113,9 @@ The full log is in `~/.local/state/loq-dots/`.
 |---|---|
 | `Super+Enter` | Terminal · `Super+T` floating terminal (press again to hide it; it keeps running) |
 | `Super+Space` / `Ctrl+Space` | Launcher |
-| `Super+S` | Control center |
+| `Super+H` | Control center |
+| `Super+S` · `Super+E` · `Super+C` | Spotify · Edge · Claude (open, or jump to it if it's already open) |
+| `Super+K` | Files |
 | `Super+Shift+W` | Wallpapers |
 | `Super+.` | Clipboard |
 | `Super+N` | Noctalia settings |
@@ -122,7 +124,7 @@ The full log is in `~/.local/state/loq-dots/`.
 | `Super+V` | Browser: open Brave, or jump to it if it's already open |
 | `Super+Alt+V` | Float the window / put it back in line |
 | `Super+1..9` · `Super+Shift+1..9` | Go to / move to workspace |
-| `Super+H/J/K/L` · arrows | Move focus |
+| Arrows · `Super+J/L` | Move focus (`H` and `K` now open the control center and Files) |
 | `Super+Shift+←/→` (or `H/L`) | Go to the other monitor |
 | `Super+Shift+Ctrl+←/→` (or `H/L`) | Move the window to the other monitor |
 | `Super` + two fingers up/down on the touchpad | Volume up / down |

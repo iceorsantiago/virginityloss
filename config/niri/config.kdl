@@ -211,13 +211,13 @@ binds {
     Ctrl+Alt+T { spawn "kitty"; }
     // Toggle: open, hide (it keeps running) and bring it back. See scratch-terminal.sh
     Mod+T hotkey-overlay-title="Floating terminal (show/hide)" { spawn-sh "~/.config/niri/scratch-terminal.sh"; }
-    Mod+E hotkey-overlay-title="Files" { spawn "nautilus"; }
+    Mod+E hotkey-overlay-title="Edge" { spawn-sh "~/.config/niri/launch-app.sh '^microsoft-edge' 'Microsoft Edge'"; }
     Mod+G hotkey-overlay-title="Tell Guess Who's Back (mic)" { spawn "guess-whos-back" "--speak"; }
 
     // Noctalia
     Mod+Space hotkey-overlay-title="Launcher" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Ctrl+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
-    Mod+S hotkey-overlay-title="Control center" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+    Mod+S hotkey-overlay-title="Spotify" { spawn-sh "~/.config/niri/launch-app.sh '^spotify$' 'Spotify'"; }
     Mod+Shift+W hotkey-overlay-title="Wallpapers" { spawn "noctalia" "msg" "panel-toggle" "wallpaper"; }
     Mod+Period hotkey-overlay-title="Clipboard" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+N hotkey-overlay-title="Noctalia settings" { spawn "noctalia" "msg" "settings-toggle"; }
@@ -244,9 +244,9 @@ binds {
     Mod+Right { focus-column-right; }
     Mod+Up    { focus-window-up; }
     Mod+Down  { focus-window-down; }
-    Mod+H     { focus-column-left; }
+    Mod+H hotkey-overlay-title="Control center" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
     Mod+L     { focus-column-right; }
-    Mod+K     { focus-window-up; }
+    Mod+K hotkey-overlay-title="Files" { spawn "nautilus"; }
     Mod+J     { focus-window-down; }
 
     Mod+Ctrl+Left  { move-column-left; }
@@ -275,7 +275,7 @@ binds {
     Mod+Shift+R { switch-preset-window-height; }
     Mod+F       { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
-    Mod+C       { center-column; }
+    Mod+C hotkey-overlay-title="Claude" { spawn-sh "~/.config/niri/launch-app.sh '^claude' 'Claude'"; }
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
     Mod+Shift+Minus { set-window-height "-10%"; }
