@@ -62,6 +62,8 @@ apt-get install -y nvidia-open
 
 info "Module options"
 install -Dm644 "$REPO_DIR/system/modprobe/nvidia-loq.conf" /etc/modprobe.d/nvidia-loq.conf
+# Suspend: S0ix (GC6) off, overriding nvidia.conf; see docs/suspend-resume.md
+install -Dm644 "$REPO_DIR/system/modprobe/zz-nvidia-loq-suspend.conf" /etc/modprobe.d/zz-nvidia-loq-suspend.conf
 # niri: stops the driver from holding ~1 GB of extra VRAM (niri wiki recommendation for NVIDIA)
 install -Dm644 "$REPO_DIR/system/nvidia/50-limit-free-buffer-pool-in-wayland-compositors.json" \
     /etc/nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool-in-wayland-compositors.json
@@ -70,7 +72,7 @@ info "Boot parameters (GRUB, separate file so /etc/default/grub is left alone)"
 install -Dm644 "$REPO_DIR/system/grub/90-loq-nvidia.cfg" /etc/default/grub.d/90-loq-nvidia.cfg
 
 info "Suspend: NVIDIA services that save VRAM"
-for s in nvidia-suspend nvidia-resume nvidia-hibernate; do
+for s in nvidia-suspend nvidia-resume nvidia-hibernate nvidia-suspend-then-hibernate; do
     systemctl list-unit-files "$s.service" >/dev/null 2>&1 && systemctl enable "$s.service" || warn "$s.service doesn't exist"
 done
 

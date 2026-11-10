@@ -50,7 +50,10 @@ if mokutil --sb-state 2>/dev/null | grep -i enabled >/dev/null; then
 fi
 check "suspend fix: pcie_aspm=off at boot"   grep -qw 'pcie_aspm=off' /proc/cmdline
 check "suspend fix: NVMe deep states off"    grep -qw 'nvme_core.default_ps_max_latency_us=0' /proc/cmdline
-check "suspend fix: NVIDIA S0ix enabled"     sh -c 'grep -A2 "S0ix Power" /proc/driver/nvidia/gpus/*/power | grep -q "Status:.*Enabled"'
+check "suspend fix: NVIDIA S0ix/GC6 off"     sh -c 'grep -A2 "S0ix Power" /proc/driver/nvidia/gpus/*/power | grep -q "Status:.*Disabled"'
+check "suspend fix: NVIDIA VRAM saved"       grep -q '^PreserveVideoMemoryAllocations: 1' /proc/driver/nvidia/params
+check "suspend fix: nvidia-suspend enabled"  systemctl is-enabled -q nvidia-suspend.service
+check "suspend fix: nvidia-resume enabled"   systemctl is-enabled -q nvidia-resume.service
 command -v nvidia-smi >/dev/null && nvidia-smi --query-gpu=name,driver_version,memory.total --format=csv,noheader 2>/dev/null | sed 's/^/     /'
 
 info "LOQ hardware"

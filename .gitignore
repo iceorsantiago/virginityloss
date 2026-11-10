@@ -5,3 +5,4 @@
 # The wallpaper is downloaded at install time; it isn't redistributed
 *.png
 *.jpg
+diag/
