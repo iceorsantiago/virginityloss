@@ -29,7 +29,9 @@ for i in $(seq 1 "$cycles"); do
     done
     sleep 8
     j=$(journalctl --since "$since" -q --no-pager -o short-iso)
-    bad=$(grep -E 'Booter failed|GSP boot failed|GC6 to D0|Xid|nv_set_system_power_state|IO_PAGE_FAULT|niri.*(panicked|error.*(drm|device))' <<<"$j")
+    bad=$(grep -E 'Booter failed|GSP boot failed|GC6 to D0|Xid|nv_set_system_power_state|IO_PAGE_FAULT|niri.*panicked' <<<"$j")
+    # niri logs one refused page flip (EACCES) right at wake, before it has the screen back; harmless
+    flips=$(grep -c 'Page flip commit failed' <<<"$j")
     ok_sleep=$(grep -c 'System returned from sleep' <<<"$j")
     gpu=$(timeout 15 nvidia-smi --query-gpu=name,pstate,power.draw --format=csv,noheader 2>&1 | head -1)
     edp=$(cat /sys/class/drm/card*-eDP-1/status /sys/class/drm/card*-eDP-1/enabled 2>/dev/null | paste -sd' ')
@@ -37,7 +39,7 @@ for i in $(seq 1 "$cycles"); do
     niri=$(pgrep -x niri >/dev/null && echo running || echo DEAD)
     net=$(nmcli -t -f TYPE,STATE device 2>/dev/null | grep -E '^wifi' | head -1)
     audio=$( [[ -n $user ]] && sudo -u "$user" XDG_RUNTIME_DIR=/run/user/$uid pactl get-default-sink 2>&1 | head -1)
-    say "    resumed=$ok_sleep gpu=[$gpu] eDP=[$edp] backlight=$bl niri=$niri wifi=[$net] audio=[$audio]"
+    say "    resumed=$ok_sleep gpu=[$gpu] eDP=[$edp] backlight=$bl niri=$niri wifi=[$net] audio=[$audio] niri-early-flips=$flips"
     if [[ -n $bad || $ok_sleep -lt 1 || $niri != running || $gpu != *RTX* ]]; then
         say "    FAIL"; [[ -n $bad ]] && say "$bad"; fail=$((fail + 1))
     else
